@@ -1,0 +1,10 @@
+.header {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  position: sticky;
+  top: 0;
+
+  text-align: center;
+  opacity: 0.8;
+}

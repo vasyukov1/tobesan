@@ -1,0 +1,19 @@
+.item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: cornflowerblue;
+  color: black;
+
+  font-weight: 600;
+
+  border-right: 1px solid #0155a8;
+
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    background-color: rgb(71, 128, 234);
+    color: black;
+  }
+}
