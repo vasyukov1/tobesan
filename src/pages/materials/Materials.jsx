@@ -7,19 +7,13 @@ import Main from "../../components/main/Main";
 
 const Materials = () => {
   return (
-    <div className="page">
-      {/* <div className="header"> */}
+    <div>
       <Header />
-      {/* </div> */}
-      {/* <div className="sidepanel"> */}
-      <Sidepanel />
-      {/* </div> */}
-      {/* <div className="main"> */}
-      <Main />
-      {/* </div>
-      <div className="footer"> */}
+      <div className="page">
+        <Sidepanel/> 
+        <Main/>
+      </div>
       <Footer />
-      {/* </div> */}
     </div>
   );
 };

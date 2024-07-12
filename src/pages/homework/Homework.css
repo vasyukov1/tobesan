@@ -1,17 +1,5 @@
-/* .page {
-  background-color: blue;
+.page {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
 }
-
-.header {
-  top: 0;
-}
-.sidepanel {
-  left: 100px;
-}
-.main {
-  background-color: brown;
-  right: 100px;
-}
-.footer {
-  bottom: 0;
-} */

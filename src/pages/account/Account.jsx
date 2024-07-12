@@ -5,7 +5,7 @@ import Main from "../../components/main/Main";
 
 const Account = () => {
   return (
-    <div className="page">
+    <div>
       {/* <div className="header"> */}
       <Header />
       {/* </div> */}
