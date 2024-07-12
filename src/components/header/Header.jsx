@@ -1,13 +1,9 @@
 import React from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
 
 import Item from "../item/Item";
-import { useSelector } from "react-redux";
 
 const Header = () => {
-  const isUserAuthenticated = useSelector((state) => state.user.isAuth);
-
   return (
     <div className="header">
       <Item name="Main" linkName="/" />
@@ -15,7 +11,7 @@ const Header = () => {
       <Item name="Homework" linkName="/homework" />
       <Item name="Grades" linkName="/grades" />
 
-      {isUserAuthenticated ? (
+      {localStorage.getItem("authToken") ? (
         <Item name="Account" linkName="/account" />
       ) : (
         <Item name="Login" linkName="/login" />
