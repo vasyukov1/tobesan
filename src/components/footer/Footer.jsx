@@ -13,6 +13,12 @@ const Footer = () => {
       <div>
         <a href="https://t.me/vyshkochka">Вышкочка</a>
       </div>
+      <div>
+        <a href="https://t.me/Mister_V_1">Dima</a>
+      </div>
+      <div>
+        <a href="https://t.me/amirovagil">Agile macho</a>
+      </div>
     </div>
   );
 };
