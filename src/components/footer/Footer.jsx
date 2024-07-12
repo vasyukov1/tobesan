@@ -6,18 +6,18 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <div>
-        <a href="https://t.me/overmindv">Сверхразум говорит</a>
-      </div>
       <Link>About us</Link>
       <div>
-        <a href="https://t.me/vyshkochka">Вышкочка</a>
+        <a href="https://t.me/overmindv">Alex Sverhrazum</a>
       </div>
       <div>
-        <a href="https://t.me/Mister_V_1">Dima</a>
+        <a href="https://t.me/vyshkochka">Leo Vyshkochka</a>
       </div>
       <div>
-        <a href="https://t.me/amirovagil">Agile macho</a>
+        <a href="https://t.me/Mister_V_1">Dima Dezign</a>
+      </div>
+      <div>
+        <a href="https://t.me/amirovagil">Agile Macho</a>
       </div>
     </div>
   );
