@@ -5,7 +5,7 @@ import Sidepanel from "../../components/sidepanel/Sidepanel";
 import Main from "../../components/main/Main";
 //import "./Homework.css";
 
-const Grades = () => {
+const Materials = () => {
   return (
     <div className="page">
       {/* <div className="header"> */}
@@ -24,4 +24,4 @@ const Grades = () => {
   );
 };
 
-export default Grades;
+export default Materials;
