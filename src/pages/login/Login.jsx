@@ -1,14 +1,28 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { setAuthAction } from "../../store/userReducer";
+import { ACCOUNT_ROUTE } from "../../routing/const";
+
 import Input from "./input/Input";
 import Button from "./button/Button";
-import { setAuthAction } from "../../store/userReducer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+
+  const isAuth = useSelector((state) => state.user.isAuth);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate(ACCOUNT_ROUTE);
+    }
+    console.log(`Login`);
+  }, [isAuth]);
 
   const handleLogin = () => {
     // Здесь вход пользователя в аккаунт.
