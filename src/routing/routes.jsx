@@ -2,6 +2,7 @@ import Account from "../pages/account/Account.jsx";
 import Grades from "../pages/grades/Grades.jsx";
 import Home from "../pages/home/Home.jsx";
 import Homework from "../pages/homework/Homework.jsx";
+import Login from "../pages/login/Login.jsx";
 import Materials from "../pages/materials/Materials.jsx";
 import {
   ACCOUNT_ROUTE,
@@ -9,6 +10,7 @@ import {
   HOMEWORK_ROUTE,
   MAIN_ROUTE,
   MATERIALS_ROUTE,
+  LOGIN_ROUTE,
 } from "./const.js";
 
 export const publicRoutes = [
@@ -21,6 +23,10 @@ export const publicRoutes = [
     Element: <Account />,
   },
   {
+    path: LOGIN_ROUTE,
+    Element: <Login />,
+  },
+  {
     path: HOMEWORK_ROUTE,
     Element: <Homework />,
   },
@@ -31,5 +37,5 @@ export const publicRoutes = [
   {
     path: MATERIALS_ROUTE,
     Element: <Materials />,
-  }
+  },
 ];

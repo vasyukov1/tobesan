@@ -3,8 +3,11 @@ import "./Header.css";
 import { Link } from "react-router-dom";
 
 import Item from "../item/Item";
+import { useSelector } from "react-redux";
 
 const Header = () => {
+  const isUserAuthenticated = useSelector((state) => state.user.isAuth);
+
   return (
     <div className="header">
       <div>
@@ -28,9 +31,15 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <Link to="/account">
-          <Item text="Account" />
-        </Link>
+        {isUserAuthenticated ? (
+          <Link to="/account">
+            <Item text="Account" />
+          </Link>
+        ) : (
+          <Link to="/login">
+            <Item text="Login" />
+          </Link>
+        )}
       </div>
     </div>
   );
