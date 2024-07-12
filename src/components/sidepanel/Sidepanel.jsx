@@ -6,7 +6,7 @@ import "./Sidepanel.css";
 const Sidepanel = () => {
   return (
     <div className="sidepanel">
-      <div className="sidepanel__title">
+      {/* <div className="sidepanel__title">
         <h1>Конспекты</h1>
       </div>
       <div className="block algebra">
@@ -38,7 +38,7 @@ const Sidepanel = () => {
         <Link to="/cplusplus">
           <Item text="C++" />
         </Link>
-      </div>
+      </div> */}
     </div>
   );
 };
