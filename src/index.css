@@ -2,8 +2,7 @@
   text-decoration: none;
 }
 
-.app {
-  display: grid;
+.App {
   background-color: aqua;
 }
 

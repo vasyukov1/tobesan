@@ -2,14 +2,19 @@ import React from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
 
-import Item from "./item/Item";
+import Item from "../item/Item";
 
 const Header = () => {
   return (
     <div className="header">
       <div>
         <Link to="/">
-          <Item text="Tobesan" />
+          <Item text="Main" />
+        </Link>
+      </div>
+      <div>
+        <Link to="/materials">
+          <Item text="Materials" />
         </Link>
       </div>
       <div>
