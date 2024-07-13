@@ -1,0 +1,7 @@
+.main-hw {
+  display: flex;
+  background-color: darkcyan;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

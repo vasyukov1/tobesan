@@ -6,7 +6,7 @@ import "./Footer.css";
 const Footer = () => {
   return (
     <div className="footer">
-      <Link>About us</Link>
+      <Link to="/about">About us</Link>
       <div>
         <a href="https://t.me/overmindv">Alex Sverhrazum</a>
       </div>

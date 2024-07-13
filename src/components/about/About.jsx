@@ -1,21 +1,18 @@
 import React from "react";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import Sidepanel from "../../components/sidepanel/Sidepanel";
-import MainHW from "./main-hw/MainHW";
-import "./Homework.css";
+import Main from "../../components/main/Main";
 
-const Homework = () => {
+const About = () => {
   return (
     <div>
       <Header />
       <div className="page">
-        <Sidepanel />
-        <MainHW />
+        <Main />
       </div>
       <Footer />
     </div>
   );
 };
 
-export default Homework;
+export default About;
