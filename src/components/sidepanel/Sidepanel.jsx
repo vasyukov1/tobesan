@@ -8,8 +8,47 @@ import "./Sidepanel.css";
 import Item from "../item/Item";
 import Button from "../../pages/login/button/Button";
 
-import "../subjects/Subjects";
-import { transliterate } from "../subjects/Transliteration";
+const transliterate = (text) => {
+  const transliterationMap = {
+    а: "a",
+    б: "b",
+    в: "v",
+    г: "g",
+    д: "d",
+    е: "e",
+    ё: "e",
+    ж: "zh",
+    з: "z",
+    и: "i",
+    й: "i",
+    к: "k",
+    л: "l",
+    м: "m",
+    н: "n",
+    о: "o",
+    п: "p",
+    р: "r",
+    с: "s",
+    т: "t",
+    у: "u",
+    ф: "f",
+    х: "kh",
+    ц: "ts",
+    ч: "ch",
+    ш: "sh",
+    щ: "shch",
+    ы: "y",
+    э: "e",
+    ю: "yu",
+    я: "ya",
+    ь: "",
+    ъ: "",
+  };
+  return text
+    .split("")
+    .map((char) => transliterationMap[char.toLowerCase()] || char)
+    .join("");
+};
 
 const Sidepanel = () => {
   const disciplines1 = JSON.parse(localStorage.getItem("disciplines")) || [];
@@ -30,14 +69,6 @@ const Sidepanel = () => {
       disciplines.splice(0, disciplines.length, ...savedSubjects);
     }
     setDisciplines(savedSubjects);
-    //   axios
-    //     .get("http://localhost:3000/subjects")
-    //     .then((response) => {
-    //       setDisciplines(response.data);
-    //     })
-    //     .catch((error) => {
-    //       console.error("There was an error fetching the subjects!", error);
-    //     });
   }, [disciplines]);
 
   // useEffect(() => {
@@ -51,19 +82,6 @@ const Sidepanel = () => {
   const handleCreateClick = () => {
     if (subjectName.trim() !== "") {
       const subjectLink = `/${transliterate(subjectName)}`;
-      // axios
-      //   .post("http://localhost:3000/subjects", {
-      //     name: subjectName,
-      //     linkName: subjectLink,
-      //   })
-      //   .then((response) => {
-      //     setDisciplines([...disciplines, response.data]);
-      //     setShowInput(false);
-      //     setSubjectName("");
-      //   })
-      //   .catch((error) => {
-      //     console.error("There was an error creating the subject!", error);
-      //   });
       const newDisciplines = [
         ...disciplines,
         { name: subjectName, linkName: subjectLink },
