@@ -1,29 +1,11 @@
-import Input from "../../pages/login/input/Input";
-import React, { useEffect, useState } from "react";
+const saveSubjects = () => {
+  localStorage.setItem("disciplines", JSON.stringify(disciplines));
+};
 
-export const disciplines = [
-  { name: "Алгебра", linkName: "/algebra" },
-  { name: "Матан", linkName: "/matan" },
-  { name: "C#", linkName: "/csharp" },
-];
+export const disciplines =
+  JSON.parse(localStorage.getItem("disciplines")) || [];
 
-export const AddSubject = () => {
-  return <div></div>;
-
-  // const [subjectName, setSubjectName] = useState("subject");
-  // const [subjectLink, setSubjectLink] = useState("/");
-  // <Input
-  //   text="Название предмета"
-  //   type="text"
-  //   value={subjectName}
-  //   setValue={setSubjectName}
-  // />;
-  // <Input
-  //   text="Ссылка на предмет (с '/')"
-  //   type="link"
-  //   value={subjectLink}
-  //   setValue={setSubjectLink}
-  // />;
-  // <Button text="добавить" onClick={handleLogin} />;
-  // disciplines.push({ name: subjectName, linkName: subjectLink });
+export const addSubject = (name, linkName) => {
+  disciplines.push({ name, linkName });
+  saveSubjects();
 };
