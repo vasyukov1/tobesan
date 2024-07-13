@@ -1,8 +1,17 @@
 .footer {
   display: flex;
-  background-color: cadetblue;
+  background-color: #bab8b8;
   gap: 100px;
-  height: 100px;
+  height: 70px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.footer2{
+  display: flex;
+  background-color: #bab8b8;
+  height: 40px;
 
   justify-content: center;
   align-items: center;
