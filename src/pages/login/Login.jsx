@@ -6,6 +6,7 @@ import { ACCOUNT_ROUTE } from "../../routing/const";
 import Input from "./input/Input";
 import Button from "./button/Button";
 import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer"
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -64,6 +65,7 @@ const Login = () => {
         </div>
 
         <Button text="Войти" onClick={handleLogin} />
+        <Footer/>
       </div>
     </div>
   );
