@@ -7,6 +7,7 @@ const Header = () => {
   return (
     <div className="header">
       <Item name="Main" linkName="/" />
+
       <Item name="Materials" linkName="/materials" />
       <Item name="Homework" linkName="/homework" />
       <Item name="Grades" linkName="/grades" />

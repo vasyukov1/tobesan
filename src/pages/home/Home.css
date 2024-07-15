@@ -1,7 +1,7 @@
 /* mainPage.css */
 .home {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: 81vh;
@@ -11,7 +11,7 @@
 .subject-button,
 .add-subject-button {
   width: 200px;
-  height: 50px;
+  height: 200px;
   margin: 10px;
   font-size: 18px;
   cursor: pointer;

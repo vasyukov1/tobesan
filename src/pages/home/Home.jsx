@@ -12,6 +12,7 @@ const Home = () => {
   return (
     <div>
       <Header />
+
       <div className="home">
         {subjectKeys.map((subject) => (
           <Link key={subject} to={`/subjects/${subject}`}>
