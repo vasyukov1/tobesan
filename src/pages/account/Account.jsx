@@ -10,6 +10,7 @@ const Account = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("role");
     navigate(LOGIN_ROUTE);
   };
 
