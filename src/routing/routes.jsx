@@ -1,10 +1,10 @@
 import Account from "../pages/account/Account.jsx";
 import Grades from "../pages/grades/Grades.jsx";
 import Home from "../pages/home/Home.jsx";
-import Homework from "../pages/homework/Homework.jsx";
 import Login from "../pages/login/Login.jsx";
 import Materials from "../pages/materials/Materials.jsx";
 import About from "../components/about/About.jsx";
+import Homework from "../pages/homework/Homework.jsx";
 import {
   ACCOUNT_ROUTE,
   GRADES_ROUTE,
