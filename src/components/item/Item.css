@@ -6,9 +6,14 @@
   background-color: cornflowerblue;
   color: black;
 
+  cursor: pointer;
+  border: none;
+  border-radius: 50px 20px 70px;
+  height: 80px;
+
   font-weight: 600;
 
-  border-right: 1px solid #0155a8;
+  border-right: 10px solid #0155a8;
 
   transition: all 0.25s ease-in-out;
 
