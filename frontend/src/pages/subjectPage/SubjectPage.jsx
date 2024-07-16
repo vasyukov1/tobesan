@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import Sidepanel from "../../components/sidepanel/Sidepanel";
 
 const SubjectPage = ({ subjectInfo }) => {
   const { subjectName } = useParams();
@@ -15,6 +16,7 @@ const SubjectPage = ({ subjectInfo }) => {
     <div>
       <div>
         <Header />
+        <Sidepanel />
       </div>
       <div>
         <h1>{subject.name}</h1>
