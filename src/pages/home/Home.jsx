@@ -4,6 +4,7 @@ import Footer from "../../components/footer/Footer";
 import { subjects } from "../../components/subjects/Subjects";
 import { Link } from "react-router-dom";
 import "./Home.css";
+import Sidepanel from "../../components/sidepanel/Sidepanel";
 
 const Home = () => {
   const role = localStorage.getItem("role");
@@ -12,7 +13,7 @@ const Home = () => {
   return (
     <div>
       <Header />
-
+      <Sidepanel />
       <div className="home">
         {subjectKeys.map((subject) => (
           <Link key={subject} to={`/subjects/${subject}`}>

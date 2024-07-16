@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import Sidepanel from "../../components/sidepanel/Sidepanel";
 
 const HomeworkPage = ({ subjects }) => {
   const { subjectName } = useParams();
@@ -63,8 +64,8 @@ const HomeworkPage = ({ subjects }) => {
       <div>
         <Header />
       </div>
-
-      <div>
+      <div className="page">
+        <Sidepanel />
         <h1>{subject.name} - Домашние задания</h1>
         {role === "teacher" && (
           <form onSubmit={addHomework}>
