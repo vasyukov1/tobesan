@@ -5,6 +5,7 @@ import Homework from "../pages/homework/Homework.jsx";
 import Login from "../pages/login/Login.jsx";
 import Materials from "../pages/materials/Materials.jsx";
 import Algebra from "../components/subjects/algebra/Algebra.jsx";
+import SidebarComponent from "../pages/sidebarComponent/SidebarComponent.jsx";
 import {
   ACCOUNT_ROUTE,
   GRADES_ROUTE,
@@ -12,36 +13,41 @@ import {
   MAIN_ROUTE,
   MATERIALS_ROUTE,
   LOGIN_ROUTE,
-  ALGEBRA_ROUTE
+  ALGEBRA_ROUTE,
+  SIDEBARCOMPONENT_ROUTE
 } from "./const.js";
 
 export const publicRoutes = [
   {
     path: MAIN_ROUTE,
-    Element: <Home />,
+    Element: Home,
   },
   {
     path: ACCOUNT_ROUTE,
-    Element: <Account />,
+    Element: Account,
   },
   {
     path: LOGIN_ROUTE,
-    Element: <Login />,
+    Element: Login,
   },
   {
     path: HOMEWORK_ROUTE,
-    Element: <Homework />,
+    Element: Homework,
   },
   {
     path: GRADES_ROUTE,
-    Element: <Grades />,
+    Element: Grades,
   },
   {
     path: MATERIALS_ROUTE,
-    Element: <Materials />,
+    Element: Materials,
   },
   {
     path: ALGEBRA_ROUTE,
-    Element: <Algebra />
+    Element: Algebra,
+  },
+  {
+    path: SIDEBARCOMPONENT_ROUTE,
+    Element: SidebarComponent,
   },
 ];

@@ -34,17 +34,19 @@
 
 // // export default App;
 
-// src/App.jsx
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import AppRouter from './routing/AppRouter';
-import { AuthProvider } from './components/context/AuthContext'; // Исправлен путь и имя
+import { AuthProvider } from './components/context/AuthContext';
+import SidebarComponent from './pages/sidebarComponent/SidebarComponent';
+import './App.css';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <BrowserRouter>
+          <SidebarComponent />
           <AppRouter />
         </BrowserRouter>
       </AuthProvider>
@@ -53,3 +55,4 @@ function App() {
 }
 
 export default App;
+

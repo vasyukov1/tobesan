@@ -1,0 +1,12 @@
+/* materials.css */
+.materials {
+    margin-left: 250px; /* Отступ для содержимого страницы */
+    padding: 20px;
+  }
+  
+  .subjects {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
