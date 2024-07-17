@@ -6,6 +6,7 @@ import { publicRoutes } from "./routes";
 import SubjectPage from "../pages/subjectPage/SubjectPage";
 import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
+import MaterialsPage from "../pages/materialsPage/MaterialsPage";
 
 const AppRouter = () => {
   return (
@@ -17,6 +18,10 @@ const AppRouter = () => {
       <Route
         path="/subjects/:subjectName/homework"
         element={<HomeworkPage subjects={subjects} />}
+      />
+      <Route
+        path="/subjects/:subjectName/materials"
+        element={<MaterialsPage subjects={subjects} />}
       />
       {publicRoutes.map(({ path, Element }) => {
         return <Route key={path} path={path} element={Element} />;

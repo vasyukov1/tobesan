@@ -1,0 +1,36 @@
+.loginArea {
+  height: 81vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsArea {
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  border: 0.5rem inset black;
+  align-items: center;
+  width: 25%;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: rgb(215, 213, 213);
+}
+
+.loginButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 15vw;
+  align-self: center;
+}

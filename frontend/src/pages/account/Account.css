@@ -5,8 +5,15 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9;
+  background-color: rgb(215, 213, 213);
   text-align: center;
+  height: 81vh;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
 }
 
 .user-photo {
@@ -14,6 +21,7 @@
   height: 150px;
   border-radius: 50%;
   margin-bottom: 20px;
+  color: white;
 }
 
 h1 {
@@ -26,7 +34,7 @@ p {
   margin: 5px 0;
 }
 
-button {
+.buttonAccount {
   display: block;
   width: 100%;
   padding: 10px;
@@ -37,6 +45,8 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 25vw;
+  align-self: center;
 }
 
 button:hover {

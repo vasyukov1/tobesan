@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import { LOGIN_ROUTE } from "../../routing/const";
+import "./Account.css";
 
 import React, { useState, useEffect } from "react";
 
@@ -46,24 +47,31 @@ const AccountPage = ({ userId }) => {
   }
 
   return (
-    <div className="account-page">
+    <div>
       <Header />
-      <img src={user.photo} alt="User" className="user-photo" />
-      <h1>{`${user.lastName} ${user.firstName} ${user.middleName}`}</h1>
-      <p>Дата рождения: {user.birthDate}</p>
-      {role === "student" ? (
-        <>
-          <p>Факультет: {user.faculty}</p>
-          <p>Группа: {user.group}</p>
-          <p>Направление: {user.direction}</p>
-        </>
-      ) : (
-        <p>Предмет преподавания: {user.subject}</p>
-      )}
-      <p>Логин: {user.login}</p>
-      <button>Сменить пароль</button>
-      <button>Редактировать аккаунт</button>
-      <button onClick={handleLogout}>Log Out</button>
+      <div className="account-page">
+        <img src={user.photo} alt="User" className="user-photo" />
+        <p>{role === "student" ? "Студент" : "Преподаватель"}</p>
+        <h1>{`${user.lastName} ${user.firstName} ${user.middleName}`}</h1>
+        <p>Дата рождения: {user.birthDate}</p>
+        {role === "student" ? (
+          <>
+            <p>Факультет: {user.faculty}</p>
+            <p>Группа: {user.group}</p>
+            <p>Направление: {user.direction}</p>
+          </>
+        ) : (
+          <p>Предмет преподавания: {user.subject}</p>
+        )}
+        <p>Логин: {user.login}</p>
+        <div className="buttons">
+          <button className="buttonAccount">Сменить пароль</button>
+          <button className="buttonAccount">Редактировать аккаунт</button>
+          <button className="buttonAccount" onClick={handleLogout}>
+            Log Out
+          </button>
+        </div>
+      </div>
       <Footer />
     </div>
   );

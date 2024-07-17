@@ -7,6 +7,7 @@ import { ACCOUNT_ROUTE } from "../../routing/const";
 
 import Input from "./input/Input";
 import Button from "./button/Button";
+import "./Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -32,41 +33,44 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="">
-        <h1>Вход</h1>
-        <Input text="Почта" type="email" value={email} setValue={setEmail} />
+      <div className="loginArea">
+        <div className="buttonsArea">
+          <h1>Вход</h1>
+          <Input text="Почта " type="email" value={email} setValue={setEmail} />
 
-        <Input
-          text="Пароль"
-          type="password"
-          value={password}
-          setValue={setPassword}
-        />
+          <Input
+            text="Пароль "
+            type="password"
+            value={password}
+            setValue={setPassword}
+          />
 
-        <div>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="student"
-              checked={role === "student"}
-              onChange={(event) => setRole(event.target.value)}
-            />
-            Student
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="role"
-              value="teacher"
-              checked={role === "teacher"}
-              onChange={(event) => setRole(event.target.value)}
-            />
-            Teacher
-          </label>
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="student"
+                checked={role === "student"}
+                onChange={(event) => setRole(event.target.value)}
+              />
+              Student
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="teacher"
+                checked={role === "teacher"}
+                onChange={(event) => setRole(event.target.value)}
+              />
+              Teacher
+            </label>
+          </div>
+          <button className="loginButton" onClick={handleLogin}>
+            Войти
+          </button>
         </div>
-
-        <Button text="Войти" onClick={handleLogin} />
       </div>
       <div>
         <Footer />
