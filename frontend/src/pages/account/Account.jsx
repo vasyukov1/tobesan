@@ -65,9 +65,11 @@ const AccountPage = ({ userId }) => {
         )}
         <p>Логин: {user.login}</p>
         <div className="buttons">
-          <button>Сменить пароль</button>
-          <button>Редактировать аккаунт</button>
-          <button onClick={handleLogout}>Log Out</button>
+          <button className="buttonAccount">Сменить пароль</button>
+          <button className="buttonAccount">Редактировать аккаунт</button>
+          <button className="buttonAccount" onClick={handleLogout}>
+            Log Out
+          </button>
         </div>
       </div>
       <Footer />

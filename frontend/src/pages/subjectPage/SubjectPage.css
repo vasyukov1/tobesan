@@ -1,5 +1,21 @@
 .subjectButton {
   width: 20vw;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 25vw;
+  align-self: center;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 .subjectPage {

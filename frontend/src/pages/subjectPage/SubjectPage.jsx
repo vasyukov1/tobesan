@@ -75,11 +75,11 @@ const SubjectPage = ({ subjectInfo }) => {
         <Sidepanel />
         <div>
           <h1>{subject.name}</h1>
-          {role === "teacher" && (
+          {/* {role === "teacher" && (
             <button onClick={openModal} className="subjectButton">
               Добавить материалы
             </button>
-          )}
+          )} */}
           <Link to={`/subjects/${subjectName}/homework`}>
             <button className="subjectButton">
               Перейти к домашнему заданию

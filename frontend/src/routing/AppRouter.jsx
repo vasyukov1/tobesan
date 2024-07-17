@@ -6,7 +6,7 @@ import { publicRoutes } from "./routes";
 import SubjectPage from "../pages/subjectPage/SubjectPage";
 import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
-import MaterialsPage from "../pages/home/materialsPage/MaterialsPage";
+import MaterialsPage from "../pages/materialsPage/MaterialsPage";
 
 const AppRouter = () => {
   return (

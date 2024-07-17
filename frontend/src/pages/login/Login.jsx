@@ -67,9 +67,9 @@ const Login = () => {
               Teacher
             </label>
           </div>
-          <div className="loginButton">
-            <Button text="Войти" onClick={handleLogin} />
-          </div>
+          <button className="loginButton" onClick={handleLogin}>
+            Войти
+          </button>
         </div>
       </div>
       <div>
