@@ -7,6 +7,7 @@ import SubjectPage from "../pages/subjectPage/SubjectPage";
 import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
 import MaterialsPage from "../pages/materialsPage/MaterialsPage";
+import GradesPage from "../pages/gradesPage/GradesPage";
 
 const AppRouter = () => {
   return (
@@ -16,12 +17,16 @@ const AppRouter = () => {
         element={<SubjectPage subjectInfo={subjects} />}
       />
       <Route
-        path="/subjects/:subjectName/homework"
+        path="/homework/:subjectName"
         element={<HomeworkPage subjects={subjects} />}
       />
       <Route
-        path="/subjects/:subjectName/materials"
+        path="/materials/:subjectName"
         element={<MaterialsPage subjects={subjects} />}
+      />
+      <Route
+        path="/grades/:subjectName"
+        element={<GradesPage subjects={subjects} />}
       />
       {publicRoutes.map(({ path, Element }) => {
         return <Route key={path} path={path} element={Element} />;

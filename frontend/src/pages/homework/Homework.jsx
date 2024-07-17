@@ -10,7 +10,7 @@ const Homework = () => {
     <div>
       <Header />
       <div className="page">
-        <Sidepanel />
+        <Sidepanel ourPage="homework" />
         <Main />
       </div>
       <Footer />

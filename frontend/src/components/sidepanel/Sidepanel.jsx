@@ -3,17 +3,15 @@ import "./Sidepanel.css";
 import { Link } from "react-router-dom";
 import { subjects } from "../subjects/Subjects";
 
-const Sidepanel = () => {
+const Sidepanel = ({ ourPage }) => {
   const subjectKeys = Object.keys(subjects);
   return (
     <div className="sidepanel">
       <menu>
-        <div className="sideItem">
+        <div>
           {subjectKeys.map((subject) => (
-            <Link key={subject} to={`/subjects/${subject}`}>
-              <button className="subject-button">
-                {subjects[subject].name}
-              </button>
+            <Link key={subject} to={`/${ourPage}/${subject}`}>
+              <button className="sideItem">{subjects[subject].name}</button>
             </Link>
           ))}
         </div>
