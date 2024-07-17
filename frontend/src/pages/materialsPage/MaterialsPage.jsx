@@ -6,6 +6,17 @@ import Sidepanel from "../../components/sidepanel/Sidepanel";
 import Modal from "../../functions/modal/Modal";
 import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
 
+// Hi, Levonid!
+// Hi, Sasha, i want to update this page
+// i can't start the npm
+// i can't find frontend and i frogot where the project
+// ты полный путь писал?
+// Ты тут?
+// я вижу,  да есть
+// терминал node
+// значит, хорошо
+// ты из какого терминала запускаешь?
+
 const MaterialsPage = ({ subjects }) => {
   const { subjectName } = useParams();
   const subject = subjects[subjectName];
