@@ -1,0 +1,9 @@
+.subjectButton {
+  width: 20vw;
+}
+
+.subjectPage {
+  display: flex;
+  flex-direction: row;
+  gap: 25px;
+}

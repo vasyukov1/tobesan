@@ -13,16 +13,20 @@ const Home = () => {
   return (
     <div>
       <Header />
-      <Sidepanel />
-      <div className="home">
-        {subjectKeys.map((subject) => (
-          <Link key={subject} to={`/subjects/${subject}`}>
-            <button className="subject-button">{subjects[subject].name}</button>
-          </Link>
-        ))}
-        {role === "teacher" && (
-          <button className="add-subject-button">Добавить предмет</button>
-        )}
+      <div className="pagehome">
+        <Sidepanel />
+        <div className="home">
+          {subjectKeys.map((subject) => (
+            <Link key={subject} to={`/subjects/${subject}`}>
+              <button className="subject-button">
+                {subjects[subject].name}
+              </button>
+            </Link>
+          ))}
+          {role === "teacher" && (
+            <button className="add-subject-button">Добавить предмет</button>
+          )}
+        </div>
       </div>
       <Footer />
     </div>

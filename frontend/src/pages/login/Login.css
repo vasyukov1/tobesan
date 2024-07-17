@@ -1,0 +1,25 @@
+.loginArea {
+  height: 81vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsArea {
+  display: flex;
+  height: 50%;
+  justify-content: center;
+  border: 0.5rem inset black;
+  align-items: center;
+  width: 25%;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: rgb(215, 213, 213);
+}
+
+.loginButton {
+  width: 20vw;
+}
