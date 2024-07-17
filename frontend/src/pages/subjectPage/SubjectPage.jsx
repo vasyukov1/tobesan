@@ -80,12 +80,12 @@ const SubjectPage = ({ subjectInfo }) => {
               Добавить материалы
             </button>
           )} */}
-          <Link to={`/subjects/${subjectName}/homework`}>
+          <Link to={`/homework/${subjectName}`}>
             <button className="subjectButton">
               Перейти к домашнему заданию
             </button>
           </Link>
-          <Link to={`/subjects/${subjectName}/materials`}>
+          <Link to={`/materials/${subjectName}`}>
             <button className="subjectButton">Перейти к материалам</button>
           </Link>
           <p>{subject.description}</p>

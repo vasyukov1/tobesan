@@ -66,10 +66,9 @@ const HomeworkPage = ({ subjects }) => {
         <Header />
       </div>
       <div className="page">
-        <Sidepanel />
+        <Sidepanel ourPage="homework" />
         <div className="HWTitle">
           <h1>{subject.name} - Домашние задания</h1>
-          {/* Hi, leo */}
           {role === "teacher" && (
             <form onSubmit={addHomework}>
               <input

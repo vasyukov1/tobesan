@@ -14,7 +14,7 @@ const Home = () => {
     <div>
       <Header />
       <div className="pagehome">
-        <Sidepanel />
+        <Sidepanel ourPage="subjects" />
         <div className="home">
           {subjectKeys.map((subject) => (
             <Link key={subject} to={`/subjects/${subject}`}>

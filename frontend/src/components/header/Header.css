@@ -1,11 +1,21 @@
 .header {
+  /* Дима, надо книпки в области headerArea опустить немного, 
+  чтобы был небольшой промежуток, как снизу */
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   background-color: rgb(47, 129, 236);
 
   position: sticky;
-  top: 0;
+  top: 10vh;
 
   text-align: center;
-  opacity: 0.8;
+  /* opacity: 0.8; */
+}
+
+.headerArea {
+  display: grid;
+  position: sticky;
+  top: 0;
+  background-color: bisque;
+  height: 11vh;
 }

@@ -252,7 +252,7 @@ const MaterialsPage = ({ subjects }) => {
         <Header />
       </div>
       <div className="page">
-        <Sidepanel />
+        <Sidepanel ourPage="subjects" />
         <h1>{subject.name} - Конспекты</h1>
         {role === "teacher" && (
           <button onClick={openModal}>Добавить материалы</button>

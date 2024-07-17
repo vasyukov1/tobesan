@@ -1,20 +1,22 @@
 import React from "react";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import Sidepanel from "../../components/sidepanel/Sidepanel";
-import Main from "../../components/main/Main";
+import Footer from "../../components/footer/Footer";
 
-const Grades = () => {
+const GradesPage = () => {
   return (
     <div>
-      <Header />
+      <div>
+        <Header />
+      </div>
       <div className="page">
         <Sidepanel ourPage="grades" />
-        <Main />
       </div>
-      <Footer />
+      <div>
+        <Footer />
+      </div>
     </div>
   );
 };
 
-export default Grades;
+export default GradesPage;

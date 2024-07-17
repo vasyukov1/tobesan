@@ -9,7 +9,7 @@ const Materials = () => {
     <div>
       <Header />
       <div className="page">
-        <Sidepanel />
+        <Sidepanel ourPage="materials" />
         <Main />
       </div>
       <Footer />
