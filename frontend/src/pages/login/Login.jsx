@@ -22,6 +22,7 @@ const Login = () => {
     }
   }, [navigate]);
 
+  // My code
   const handleLogin = () => {
     localStorage.setItem("authToken", "your-token");
     localStorage.setItem("role", role);

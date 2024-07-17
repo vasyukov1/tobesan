@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
-import Footer from "../../components/footer/Footer";
 import Sidepanel from "../../components/sidepanel/Sidepanel";
+import Footer from "../../components/footer/Footer";
 
 const HomeworkPage = ({ subjects }) => {
   const { subjectName } = useParams();
