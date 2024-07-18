@@ -25,15 +25,15 @@ const Login = () => {
 
   // My code
   const handleLogin = () => {
-    const leo = UserService.sign_in(email, password, true);
-    console.log(leo);
-    if (leo) {
-      localStorage.setItem("authToken", "your-token");
-      localStorage.setItem("role", role);
-      navigate(ACCOUNT_ROUTE);
-    } else {
-      alert("ЛОХ");
-    }
+    UserService.sign_in(email, password, true).then((result) => {
+      if (result) {
+        localStorage.setItem("authToken", "your-token");
+        localStorage.setItem("role", role);
+        navigate(ACCOUNT_ROUTE);
+      } else {
+        alert("ЛОХ");
+      }
+    });
   };
 
   return (

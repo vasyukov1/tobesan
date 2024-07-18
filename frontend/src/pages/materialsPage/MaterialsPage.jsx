@@ -959,6 +959,7 @@
 //   );
 // };
 // export default MaterialsPage;
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
@@ -1045,11 +1046,12 @@ const MaterialsPage = ({ subjects }) => {
                 <td>{note.title}</td>
                 <td>{note.description}</td>
                 <td>
-                  {note.conditionLink && (
+                  {true && ( // note.conditionLink
                     <a
-                      href={note.conditionLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href="https://t.me"
+                      // href={note.conditionLink}
+                      // target="_blank"
+                      // rel="noopener noreferrer"
                     >
                       Условие
                     </a>
@@ -1086,3 +1088,173 @@ const MaterialsPage = ({ subjects }) => {
 };
 
 export default MaterialsPage;
+
+// import React, { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import Header from "../../components/header/Header";
+// import Sidepanel from "../../components/sidepanel/Sidepanel";
+// import Modal from "../../functions/modal/Modal";
+// import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
+// import Footer from "../../components/footer/Footer";
+
+// const MaterialsPage = ({ subjects }) => {
+//   const { subjectName } = useParams();
+//   const subject = subjects[subjectName];
+//   const [notes, setNotes] = useState(() => {
+//     // homeworks, setHomeworks
+//     const savedNotes = localStorage.getItem("notes"); //savedHomeworks
+//     return savedNotes ? JSON.parse(savedNotes) : [];
+//   });
+//   const [newNotes, setNewNotes] = useState({
+//     // newHomework, setNewHomework
+//     title: "",
+//     conditionLink: "",
+//     description: "",
+//     file: null,
+//   });
+//   const role = localStorage.getItem("role");
+
+//   useEffect(() => {
+//     localStorage.setItem("notes", JSON.stringify(notes));
+//   }, [notes]);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setNewHomework({ ...newHomework, [name]: value });
+//   };
+
+//   const handleFileChange = (e) => {
+//     const file = e.target.files[0];
+//     const reader = new FileReader();
+//     reader.onloadend = () => {
+//       setNewHomework({ ...newHomework, conditionLink: reader.result });
+//     };
+//     reader.readAsDataURL(file);
+//   };
+
+//   const addHomework = (e) => {
+//     e.preventDefault();
+//     setHomeworks([
+//       ...homeworks,
+//       {
+//         ...newHomework,
+//         submissionTime: "",
+//         grade: "",
+//         submittedCount: 0,
+//         checkedCount: 0,
+//       },
+//     ]);
+//     setNewHomework({ title: "", conditionLink: "", deadline: "" });
+//   };
+
+//   const submitHomework = (index) => {
+//     // Логика для сдачи домашнего задания
+//   };
+
+//   const markAsDone = (index) => {
+//     // Логика для отметки домашнего задания как выполненного
+//   };
+
+//   return (
+//     <div>
+//       <div>
+//         <Header />
+//       </div>
+//       <div className="page">
+//         <Sidepanel ourPage="homework" />
+//         <div className="HWTitle">
+//           <h1>{subject.name} - Домашние задания</h1>
+//           {role === "teacher" && (
+//             <form onSubmit={addHomework}>
+//               <input
+//                 type="text"
+//                 name="title"
+//                 value={newHomework.title}
+//                 onChange={handleInputChange}
+//                 placeholder="Название задания"
+//                 required
+//               />
+//               <input
+//                 type="date"
+//                 name="deadline"
+//                 value={newHomework.deadline}
+//                 onChange={handleInputChange}
+//                 required
+//               />
+//               <input
+//                 type="file"
+//                 accept="application/pdf"
+//                 onChange={handleFileChange}
+//                 required
+//               />
+//               <button type="submit">Задать новое дз</button>
+//             </form>
+//           )}
+//         </div>
+//         <div className="tableArea">
+//           <table id="HWTable">
+//             <thead>
+//               <tr>
+//                 <th>Номер</th>
+//                 <th>Название дз</th>
+//                 <th>Ссылка на условие</th>
+//                 <th>Кнопка сдать</th>
+//                 <th>Дедлайн</th>
+//                 <th>Кнопка "done"</th>
+//                 <th>Время сдачи</th>
+//                 <th>Оценка</th>
+//                 {role === "teacher" && (
+//                   <>
+//                     <th>Количество сдавших</th>
+//                     <th>Количество проверенных</th>
+//                     <th>Редактировать дз</th>
+//                   </>
+//                 )}
+//               </tr>
+//             </thead>
+//             <tbody>
+//               {homeworks.map((homework, index) => (
+//                 <tr key={index}>
+//                   <td>{index + 1}</td>
+//                   <td>{homework.title}</td>
+//                   <td>
+//                     <a
+//                       href={homework.conditionLink}
+//                       target="_blank"
+//                       rel="noopener noreferrer"
+//                     >
+//                       Условие
+//                     </a>
+//                   </td>
+//                   <td>
+//                     <button onClick={() => submitHomework(index)}>Сдать</button>
+//                   </td>
+//                   <td>{homework.deadline}</td>
+//                   <td>
+//                     <button onClick={() => markAsDone(index)}>Done</button>
+//                   </td>
+//                   <td>{homework.submissionTime}</td>
+//                   <td>{homework.grade}</td>
+//                   {role === "teacher" && (
+//                     <>
+//                       <td>{homework.submittedCount}</td>
+//                       <td>{homework.checkedCount}</td>
+//                       <td>
+//                         <button>Редактировать</button>
+//                       </td>
+//                     </>
+//                   )}
+//                 </tr>
+//               ))}
+//             </tbody>
+//           </table>
+//         </div>
+//       </div>
+//       <div>
+//         <Footer />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default MaterialsPage;

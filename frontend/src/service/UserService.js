@@ -32,28 +32,27 @@ class UserService {
       password: inputPassword,
       isStudent: role,
     };
-    axios
-      .post("http://127.0.0.1:5000/users/signIn", sendData)
-      .then(function (response) {
-        console.log(JSON.parse(response.data.result));
-        return JSON.parse(response.data.result);
-      })
-      .catch(function (error) {
-        console.error("Ошибка при отправке запроса:", error);
-        return null;
-      });
-    // try {
-    //   const response = await axios.post(
-    //     "http://127.0.0.1:5000/users/signIn",
-    //     sendData
-    //   );
-    //   console.log(typeof response.data);
-    //   return response.data;
-    // } catch (error) {
-    //   console.error("Ошибка при отправке запроса:", error);
-    //   return null;
-    // }
-    // axios.post("http://127.0.0.1:5000/users/signIn", sendData);
+    // axios
+    //   .post("http://127.0.0.1:5000/users/signIn", sendData)
+    //   .then(function (response) {
+    //     console.log(JSON.parse(response.data.result));
+    //     return JSON.parse(response.data.result);
+    //   })
+    //   .catch(function (error) {
+    //     console.error("Ошибка при отправке запроса:", error);
+    //     return null;
+    //   });
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:5000/users/signIn",
+        sendData
+      );
+      console.log(JSON.parse(response.data.result));
+      return JSON.parse(response.data.result);
+    } catch (error) {
+      console.error("Ошибка при отправке запроса:", error);
+      return null;
+    }
   }
 
   async changePassword(inputLogin, inputPassword, inputNewPassword, role) {
