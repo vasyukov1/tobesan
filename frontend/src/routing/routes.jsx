@@ -5,6 +5,7 @@ import Login from "../pages/login/Login.jsx";
 import Materials from "../pages/materials/Materials.jsx";
 import About from "../components/about/About.jsx";
 import Homework from "../pages/homework/Homework.jsx";
+import NoPage from "../pages/noPage/NoPage.jsx";
 import {
   ACCOUNT_ROUTE,
   GRADES_ROUTE,
@@ -13,6 +14,7 @@ import {
   MATERIALS_ROUTE,
   LOGIN_ROUTE,
   ABOUT_ROUTE,
+  NO_PAGE_ROUTE,
 } from "./const.js";
 
 export const publicRoutes = [
@@ -43,5 +45,9 @@ export const publicRoutes = [
   {
     path: ABOUT_ROUTE,
     Element: <About />,
+  },
+  {
+    path: NO_PAGE_ROUTE,
+    Element: <NoPage />,
   },
 ];

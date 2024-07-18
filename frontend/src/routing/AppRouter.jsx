@@ -1,12 +1,13 @@
 import React from "react";
 
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import { publicRoutes } from "./routes";
 import SubjectPage from "../pages/subjectPage/SubjectPage";
 import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
 import MaterialsPage from "../pages/materialsPage/MaterialsPage";
+import MaterialsPageWithErrorBoundary from "../pages/materialsPage/MaterialsPageWithErrorBoundary";
 import GradesPage from "../pages/gradesPage/GradesPage";
 
 const AppRouter = () => {
@@ -31,6 +32,7 @@ const AppRouter = () => {
       {publicRoutes.map(({ path, Element }) => {
         return <Route key={path} path={path} element={Element} />;
       })}
+      <Route path="*" element={<Navigate to="/notFound" />} />
     </Routes>
   );
 };
