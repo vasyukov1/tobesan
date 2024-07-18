@@ -6,9 +6,8 @@ import Footer from "../../components/footer/Footer";
 import { ACCOUNT_ROUTE } from "../../routing/const";
 
 import Input from "./input/Input";
-import Button from "./button/Button";
 import "./Login.css";
-import { sign_in } from "../../service/UserService";
+import UserService from "../../service/UserService";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -26,8 +25,7 @@ const Login = () => {
 
   // My code
   const handleLogin = () => {
-    // role = true;
-    if (!sign_in(email, password, true)) {
+    if (!UserService.sign_in(email, password, true)) {
       localStorage.setItem("authToken", "your-token");
       localStorage.setItem("role", role);
       navigate(ACCOUNT_ROUTE);

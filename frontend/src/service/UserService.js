@@ -1,10 +1,10 @@
 import axios from "axios";
+// import express from "express";
+// import cors from "cors";
 
-const axios = require("axios");
+// const app = express();
 
-// const { v4: uuidv4 } = require("uuid");
-// const bcrypt = require("bcrypt");
-// const tokenService = require("./TokenService");
+// app.use(cors());
 
 class UserService {
   async addUser(
@@ -26,7 +26,7 @@ class UserService {
     axios.post("http://127.0.0.1:5000/users/add", sendData);
   }
   // добавить обработку ответа
-  async sign_in(role, inputLogin, inputPassword) {
+  static async sign_in(role, inputLogin, inputPassword) {
     let sendData = {
       login: inputLogin,
       password: inputPassword,
@@ -85,4 +85,8 @@ class UserService {
   }
 }
 
-module.exports = new UserService();
+// app.listen(3000, () => {
+//   console.log("Server is running on port 3000");
+// });
+
+export default UserService;

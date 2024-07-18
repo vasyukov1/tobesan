@@ -720,6 +720,117 @@
 
 // export default MaterialsPage;
 
+// import React, { useState, useEffect } from "react";
+// import { useParams } from "react-router-dom";
+// import Header from "../../components/header/Header";
+// import Sidepanel from "../../components/sidepanel/Sidepanel";
+// import Modal from "../../functions/modal/Modal";
+// import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
+// import Footer from "../../components/footer/Footer";
+// import "./MaterialsPage.css";
+
+// const MaterialsPage = ({ subjects }) => {
+//   const { subjectName } = useParams();
+//   const subject = subjects[subjectName];
+//   const [notes, setNotes] = useState(() => {
+//     const savedNotes = localStorage.getItem(`notes_${subjectName}`);
+//     return savedNotes ? JSON.parse(savedNotes) : [];
+//   });
+//   const [newNote, setNewNote] = useState({
+//     title: "",
+//     description: "",
+//     file: null,
+//   });
+//   const role = localStorage.getItem("role");
+//   const [isModalOpen, setIsModalOpen] = useState(false);
+
+//   useEffect(() => {
+//     localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
+//   }, [notes, subjectName]);
+
+//   const handleInputChange = (e) => {
+//     const { name, value } = e.target;
+//     setNewNote({ ...newNote, [name]: value });
+//   };
+
+//   const handleFileChange = (e) => {
+//     const file = e.target.files[0];
+//     setNewNote({ ...newNote, file });
+//   };
+
+//   const addNote = (note) => {
+//     const newNoteData = {
+//       title: note.title,
+//       description: note.description,
+//       file: note.file,
+//     };
+
+//     setNotes([...notes, newNoteData]);
+//     setNewNote({ title: "", description: "", file: null });
+//     closeModal();
+//   };
+
+//   const openModal = () => {
+//     setIsModalOpen(true);
+//   };
+
+//   const closeModal = () => {
+//     setIsModalOpen(false);
+//   };
+
+//   return (
+//     <div>
+//       <Header />
+//       <div className="page">
+//         <Sidepanel ourPage="materials" />
+//         <h1>{subject.name} - Конспекты</h1>
+//         {role === "teacher" && (
+//           <button className="materialsPage" onClick={openModal}>
+//             Добавить материалы
+//           </button>
+//         )}
+//         <table>
+//           <thead>
+//             <tr>
+//               <th>Номер</th>
+//               <th>Название</th>
+//               <th>Описание</th>
+//               <th>Файл</th>
+//               {role === "teacher" && <th>Редактировать</th>}
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {notes.map((note, index) => (
+//               <tr key={index}>
+//                 <td>{index + 1}</td>
+//                 <td>{note.title}</td>
+//                 <td>{note.description}</td>
+//                 <td>
+//                   {note.file instanceof File && (
+//                     <a
+//                       href={URL.createObjectURL(note.file)}
+//                       download={note.file.name}
+//                     >
+//                       <i className="fas fa-download"></i>
+//                     </a>
+//                   )}
+//                 </td>
+//                 {role === "teacher" && <td>Редактировать</td>}
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
+//       </div>
+//       <Modal isOpen={isModalOpen} onClose={closeModal}>
+//         <AddNoteModal onClose={closeModal} onAddNote={addNote} />
+//       </Modal>
+//       <Footer />
+//     </div>
+//   );
+// };
+
+// export default MaterialsPage;
+
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Header from "../../components/header/Header";
@@ -727,7 +838,6 @@ import Sidepanel from "../../components/sidepanel/Sidepanel";
 import Modal from "../../functions/modal/Modal";
 import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
 import Footer from "../../components/footer/Footer";
-import "./MaterialsPage.css";
 
 const MaterialsPage = ({ subjects }) => {
   const { subjectName } = useParams();
@@ -739,6 +849,7 @@ const MaterialsPage = ({ subjects }) => {
   const [newNote, setNewNote] = useState({
     title: "",
     description: "",
+    conditionLink: "",
     file: null,
   });
   const role = localStorage.getItem("role");
@@ -762,11 +873,12 @@ const MaterialsPage = ({ subjects }) => {
     const newNoteData = {
       title: note.title,
       description: note.description,
+      conditionLink: note.conditionLink, // добавляем ссылку на файл
       file: note.file,
     };
 
     setNotes([...notes, newNoteData]);
-    setNewNote({ title: "", description: "", file: null });
+    setNewNote({ title: "", description: "", conditionLink: "", file: null });
     closeModal();
   };
 
@@ -778,6 +890,8 @@ const MaterialsPage = ({ subjects }) => {
     setIsModalOpen(false);
   };
 
+  //return
+
   return (
     <div>
       <Header />
@@ -785,9 +899,7 @@ const MaterialsPage = ({ subjects }) => {
         <Sidepanel ourPage="materials" />
         <h1>{subject.name} - Конспекты</h1>
         {role === "teacher" && (
-          <button className="materialsPage" onClick={openModal}>
-            Добавить материалы
-          </button>
+          <button onClick={openModal}>Добавить материалы</button>
         )}
         <table>
           <thead>
@@ -795,6 +907,7 @@ const MaterialsPage = ({ subjects }) => {
               <th>Номер</th>
               <th>Название</th>
               <th>Описание</th>
+              <th>Ссылка на условие</th>
               <th>Файл</th>
               {role === "teacher" && <th>Редактировать</th>}
             </tr>
@@ -805,6 +918,17 @@ const MaterialsPage = ({ subjects }) => {
                 <td>{index + 1}</td>
                 <td>{note.title}</td>
                 <td>{note.description}</td>
+                <td>
+                  {note.conditionLink && (
+                    <a
+                      href={note.conditionLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Условие
+                    </a>
+                  )}
+                </td>
                 <td>
                   {note.file instanceof File && (
                     <a
@@ -821,12 +945,17 @@ const MaterialsPage = ({ subjects }) => {
           </tbody>
         </table>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddNoteModal onClose={closeModal} onAddNote={addNote} />
-      </Modal>
       <Footer />
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
+        <AddNoteModal
+          onClose={closeModal}
+          onAddNote={addNote}
+          handleInputChange={handleInputChange}
+          handleFileChange={handleFileChange}
+          newNote={newNote}
+        />
+      </Modal>
     </div>
   );
 };
-
 export default MaterialsPage;
