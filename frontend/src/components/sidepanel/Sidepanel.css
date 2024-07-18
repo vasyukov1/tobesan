@@ -1,12 +1,12 @@
 .sidepanel {
   background-color: blue;
   width: 20vw;
-  height: 700px;
+  height: 81vh;
 }
 
 .sideItem {
-  width: 150px;
-  height: 75px;
+  width: 14vw;
+  height: 10vh;
   margin: 10px;
   font-size: 18px;
   cursor: pointer;
@@ -15,4 +15,5 @@
   background-color: #007bff;
   color: white;
   transition: background-color 0.3s ease;
+  align-self: center;
 }
