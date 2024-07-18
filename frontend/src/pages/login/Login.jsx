@@ -25,7 +25,9 @@ const Login = () => {
 
   // My code
   const handleLogin = () => {
-    if (!UserService.sign_in(email, password, true)) {
+    const leo = UserService.sign_in(email, password, true);
+    console.log(leo);
+    if (leo) {
       localStorage.setItem("authToken", "your-token");
       localStorage.setItem("role", role);
       navigate(ACCOUNT_ROUTE);

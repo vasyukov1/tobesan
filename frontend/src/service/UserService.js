@@ -26,7 +26,7 @@ class UserService {
     axios.post("http://127.0.0.1:5000/users/add", sendData);
   }
   // добавить обработку ответа
-  static async sign_in(role, inputLogin, inputPassword) {
+  static async sign_in(inputLogin, inputPassword, role) {
     let sendData = {
       login: inputLogin,
       password: inputPassword,
@@ -35,7 +35,8 @@ class UserService {
     axios
       .post("http://127.0.0.1:5000/users/signIn", sendData)
       .then(function (response) {
-        console.log(typeof response.data);
+        console.log(JSON.parse(response.data.result));
+        return JSON.parse(response.data.result);
       })
       .catch(function (error) {
         console.error("Ошибка при отправке запроса:", error);
