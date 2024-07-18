@@ -2,14 +2,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
   background-color: cornflowerblue;
   color: black;
 
   cursor: pointer;
   border: none;
   border-radius: 50px 20px 70px;
-  height: 80px;
+  height: 20vh;
 
   font-weight: 600;
 

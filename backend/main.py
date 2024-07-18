@@ -48,18 +48,30 @@ class DB:
     @staticmethod
     def add_teacher(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> None:
         with get_local()[1]() as session:
-            new_user = Teachers(login=new_login, password=new_password, name=new_name, surname=new_surname, patronymic=new_patronymic)
-            session.add(new_user)
-            session.flush()
-            session.commit()
+            if session.get(Teachers, new_login) != None:
+                session.flush()
+                session.commit()
+                return False
+            else:
+                new_user = Teachers(login=new_login, password=new_password, name=new_name, surname=new_surname, patronymic=new_patronymic)
+                session.add(new_user)
+                session.flush()
+                session.commit()
+                return True
 
     @staticmethod
     def add_student(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> None:
         with get_local()[1]() as session:
-            new_user = Students(login=new_login, password=new_password, name=new_name, surname=new_surname, patronymic=new_patronymic)
-            session.add(new_user)
-            session.flush()
-            session.commit()
+            if session.get(Students, new_login) != None:
+                session.flush()
+                session.commit()
+                return False
+            else:
+                new_user = Students(login=new_login, password=new_password, name=new_name, surname=new_surname, patronymic=new_patronymic)
+                session.add(new_user)
+                session.flush()
+                session.commit()
+                return True
 
     @staticmethod
     def add_group(group_name: str) -> None:
@@ -162,7 +174,7 @@ class DB:
 
     # ----------------------------------
     # deleting infromation from database
-    #-----------------------------------
+    #----------------------------------
 
     @staticmethod
     def delete_user(user_login: str, is_student: bool) -> None:
@@ -259,7 +271,18 @@ class DB:
     # -----------------------------------
     # selecting infromation from database
     #------------------------------------
-
+    @staticmethod
+    def get_student(user_login: str) -> Students:
+        with get_local()[1]() as session:
+            user = session.get(Students, user_login)
+        return user
+    
+    @staticmethod
+    def get_teacher(user_login: str) -> Teachers:
+        with get_local()[1]() as session:
+            user = session.get(Teachers, user_login)
+        return user
+    
     @staticmethod
     def select_students() -> list:
         with get_local()[1]() as session:
@@ -318,16 +341,17 @@ def init() -> None:
     DB.add_subject("C++")
     DB.add_subject("C")
     DB.add_group("БПИ231")
-    DB.add_group("БПИ232")
+    DB.add_group("БПИ235")
     DB.add_group("БПИ233")
     DB.add_student("asamirov@edu.hse.ru", "Agil", "Agil", "Amirov", "Shaig ogly")
+    print(DB.add_student("asamirov@edu.hse.ru", "RIM", "Agil", "Amirov", "Shaig ogly"))
     DB.add_teacher("Roma@edu.hse.ru", "Roma", "Roma", "Roma", "Roma")
     DB.add_student_to_group("asamirov@edu.hse.ru", "БПИ233")
     DB.add_teacher_to_the_group("Roma@edu.hse.ru", "Algebra", "БПИ233")
     DB.update_user_password("Roma@edu.hse.ru", "neRoma", False)
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ231")
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ233")
-    print(DB.sign_in("asamirov@edu.hse.ru", "Agil", True))
+    print(DB.get_student("asamirov@edu.hse.ru"))
 
 if create_tables == 'True':
     DB.create_tables()

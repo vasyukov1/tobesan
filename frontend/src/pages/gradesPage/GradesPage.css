@@ -1,0 +1,38 @@
+.grades-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.grades-table th,
+.grades-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.grades-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.grades-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+.grades-table td:last-child {
+  font-weight: bold;
+}
+
+.grades-table td:nth-child(2) {
+  text-align: center;
+}
+
+.grades-table td:nth-last-child(2) {
+  text-align: right;
+}
+
+.grades-table td:last-child {
+  text-align: right;
+  color: #007bff;
+}

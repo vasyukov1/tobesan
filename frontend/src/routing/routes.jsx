@@ -15,7 +15,9 @@ import {
   LOGIN_ROUTE,
   ABOUT_ROUTE,
   NO_PAGE_ROUTE,
+  REGISTER_ROUTE,
 } from "./const.js";
+import Register from "../pages/register/Register.jsx";
 
 export const publicRoutes = [
   {
@@ -49,5 +51,9 @@ export const publicRoutes = [
   {
     path: NO_PAGE_ROUTE,
     Element: <NoPage />,
+  },
+  {
+    path: REGISTER_ROUTE,
+    Element: <Register />,
   },
 ];

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import { ACCOUNT_ROUTE } from "../../routing/const";
+import { ACCOUNT_ROUTE, REGISTER_ROUTE } from "../../routing/const";
 
 import Input from "./input/Input";
 import "./Login.css";
@@ -12,7 +12,7 @@ import UserService from "../../service/UserService";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("student");
+  const [role, setRole] = useState(true);
 
   const navigate = useNavigate();
 
@@ -23,9 +23,8 @@ const Login = () => {
     }
   }, [navigate]);
 
-  // My code
   const handleLogin = () => {
-    UserService.sign_in(email, password, true).then((result) => {
+    UserService.sign_in(email, password, role).then((result) => {
       if (result) {
         localStorage.setItem("authToken", "your-token");
         localStorage.setItem("role", role);
@@ -34,6 +33,10 @@ const Login = () => {
         alert("ЛОХ");
       }
     });
+  };
+
+  const handleRegister = () => {
+    navigate(REGISTER_ROUTE);
   };
 
   return (
@@ -57,7 +60,7 @@ const Login = () => {
                 type="radio"
                 name="role"
                 value="student"
-                checked={role === "student"}
+                checked={role === true}
                 onChange={(event) => setRole(event.target.value)}
               />
               Student
@@ -67,7 +70,7 @@ const Login = () => {
                 type="radio"
                 name="role"
                 value="teacher"
-                checked={role === "teacher"}
+                checked={role === false}
                 onChange={(event) => setRole(event.target.value)}
               />
               Teacher
@@ -75,6 +78,10 @@ const Login = () => {
           </div>
           <button className="loginButton" onClick={handleLogin}>
             Войти
+          </button>
+          <p>--- Новенький? ---</p>
+          <button className="loginButton" onClick={handleRegister}>
+            Зарегистрироваться
           </button>
         </div>
       </div>

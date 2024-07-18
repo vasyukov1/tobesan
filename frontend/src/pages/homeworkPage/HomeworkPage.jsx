@@ -69,7 +69,7 @@ const HomeworkPage = ({ subjects }) => {
         <Sidepanel ourPage="homework" />
         <div className="HWTitle">
           <h1>{subject.name} - Домашние задания</h1>
-          {role === "teacher" && (
+          {role === false && (
             <form onSubmit={addHomework}>
               <input
                 type="text"
@@ -108,7 +108,7 @@ const HomeworkPage = ({ subjects }) => {
                 <th>Кнопка "done"</th>
                 <th>Время сдачи</th>
                 <th>Оценка</th>
-                {role === "teacher" && (
+                {role === false && (
                   <>
                     <th>Количество сдавших</th>
                     <th>Количество проверенных</th>
@@ -140,7 +140,7 @@ const HomeworkPage = ({ subjects }) => {
                   </td>
                   <td>{homework.submissionTime}</td>
                   <td>{homework.grade}</td>
-                  {role === "teacher" && (
+                  {role === false && (
                     <>
                       <td>{homework.submittedCount}</td>
                       <td>{homework.checkedCount}</td>

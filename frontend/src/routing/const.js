@@ -6,3 +6,4 @@ export const MATERIALS_ROUTE = "/materials";
 export const LOGIN_ROUTE = "/login";
 export const ABOUT_ROUTE = "/about";
 export const NO_PAGE_ROUTE = "/notFound";
+export const REGISTER_ROUTE = "/register";

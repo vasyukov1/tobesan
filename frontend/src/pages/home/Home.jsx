@@ -23,7 +23,7 @@ const Home = () => {
               </button>
             </Link>
           ))}
-          {role === "teacher" && (
+          {role === false && (
             <button className="add-subject-button">Добавить предмет</button>
           )}
         </div>

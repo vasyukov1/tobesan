@@ -7,7 +7,7 @@ import axios from "axios";
 // app.use(cors());
 
 class UserService {
-  async addUser(
+  static async addUser(
     newLogin,
     newPassword,
     newName,
@@ -23,9 +23,20 @@ class UserService {
       surname: newSurname,
       patronymic: newPatronymic,
     };
-    axios.post("http://127.0.0.1:5000/users/add", sendData);
+    try {
+      console.log("AGIL");
+      const response = await axios.post(
+        "http://127.0.0.1:5000/users/add",
+        sendData
+      );
+      // console.log("AGIL");
+      // console.log(JSON.parse(response.data.result));
+      return JSON.parse(response.data.result);
+    } catch (error) {
+      console.error("Ошибка при отправке запроса:", error);
+      return null;
+    }
   }
-  // добавить обработку ответа
   static async sign_in(inputLogin, inputPassword, role) {
     let sendData = {
       login: inputLogin,

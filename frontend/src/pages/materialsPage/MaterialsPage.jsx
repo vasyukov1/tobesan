@@ -960,135 +960,6 @@
 // };
 // export default MaterialsPage;
 
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Header from "../../components/header/Header";
-import Sidepanel from "../../components/sidepanel/Sidepanel";
-import Modal from "../../functions/modal/Modal";
-import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
-import Footer from "../../components/footer/Footer";
-
-const MaterialsPage = ({ subjects }) => {
-  const { subjectName } = useParams();
-  const subject = subjects[subjectName];
-  const [notes, setNotes] = useState(() => {
-    const savedNotes = localStorage.getItem(`notes_${subjectName}`);
-    return savedNotes ? JSON.parse(savedNotes) : [];
-  });
-  const [newNote, setNewNote] = useState({
-    title: "",
-    description: "",
-    conditionLink: "",
-    file: null,
-  });
-  const role = localStorage.getItem("role");
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  useEffect(() => {
-    localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
-  }, [notes, subjectName]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setNewNote({ ...newNote, [name]: value });
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setNewNote({ ...newNote, file });
-  };
-
-  const addNote = (note) => {
-    const newNoteData = {
-      title: note.title,
-      description: note.description,
-      conditionLink: note.conditionLink,
-      file: note.file,
-    };
-
-    setNotes([...notes, newNoteData]);
-    setNewNote({ title: "", description: "", conditionLink: "", file: null });
-    closeModal();
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  return (
-    <div>
-      <Header />
-      <div className="page">
-        <Sidepanel ourPage="materials" />
-        <h1>{subject.name} - Конспекты</h1>
-        {role === "teacher" && (
-          <button onClick={openModal}>Добавить материалы</button>
-        )}
-        <table>
-          <thead>
-            <tr>
-              <th>Номер</th>
-              <th>Название</th>
-              <th>Описание</th>
-              <th>Ссылка на условие</th>
-              <th>Файл</th>
-              {role === "teacher" && <th>Редактировать</th>}
-            </tr>
-          </thead>
-          <tbody>
-            {notes.map((note, index) => (
-              <tr key={index}>
-                <td>{index + 1}</td>
-                <td>{note.title}</td>
-                <td>{note.description}</td>
-                <td>
-                  {true && ( // note.conditionLink
-                    <a
-                      href="https://t.me"
-                      // href={note.conditionLink}
-                      // target="_blank"
-                      // rel="noopener noreferrer"
-                    >
-                      Условие
-                    </a>
-                  )}
-                </td>
-                <td>
-                  {note.file instanceof File && (
-                    <a
-                      href={URL.createObjectURL(note.file)}
-                      download={note.file.name}
-                    >
-                      <i className="fas fa-download"></i>
-                    </a>
-                  )}
-                </td>
-                {role === "teacher" && <td>Редактировать</td>}
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-      <Footer />
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddNoteModal
-          onClose={closeModal}
-          onAddNote={addNote}
-          handleInputChange={handleInputChange}
-          handleFileChange={handleFileChange}
-          newNote={newNote}
-        />
-      </Modal>
-    </div>
-  );
-};
-
-export default MaterialsPage;
-
 // import React, { useState, useEffect } from "react";
 // import { useParams } from "react-router-dom";
 // import Header from "../../components/header/Header";
@@ -1101,160 +972,266 @@ export default MaterialsPage;
 //   const { subjectName } = useParams();
 //   const subject = subjects[subjectName];
 //   const [notes, setNotes] = useState(() => {
-//     // homeworks, setHomeworks
-//     const savedNotes = localStorage.getItem("notes"); //savedHomeworks
+//     const savedNotes = localStorage.getItem(`notes_${subjectName}`);
 //     return savedNotes ? JSON.parse(savedNotes) : [];
 //   });
-//   const [newNotes, setNewNotes] = useState({
-//     // newHomework, setNewHomework
+//   const [newNote, setNewNote] = useState({
 //     title: "",
-//     conditionLink: "",
 //     description: "",
+//     conditionLink: "",
 //     file: null,
 //   });
 //   const role = localStorage.getItem("role");
+//   const [isModalOpen, setIsModalOpen] = useState(false);
 
 //   useEffect(() => {
-//     localStorage.setItem("notes", JSON.stringify(notes));
-//   }, [notes]);
+//     localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
+//   }, [notes, subjectName]);
 
 //   const handleInputChange = (e) => {
 //     const { name, value } = e.target;
-//     setNewHomework({ ...newHomework, [name]: value });
+//     setNewNote({ ...newNote, [name]: value });
 //   };
 
 //   const handleFileChange = (e) => {
 //     const file = e.target.files[0];
-//     const reader = new FileReader();
-//     reader.onloadend = () => {
-//       setNewHomework({ ...newHomework, conditionLink: reader.result });
+//     setNewNote({ ...newNote, file });
+//   };
+
+//   const addNote = (note) => {
+//     const newNoteData = {
+//       title: note.title,
+//       description: note.description,
+//       conditionLink: note.conditionLink,
+//       file: note.file,
 //     };
-//     reader.readAsDataURL(file);
+
+//     setNotes([...notes, newNoteData]);
+//     setNewNote({ title: "", description: "", conditionLink: "", file: null });
+//     closeModal();
 //   };
 
-//   const addHomework = (e) => {
-//     e.preventDefault();
-//     setHomeworks([
-//       ...homeworks,
-//       {
-//         ...newHomework,
-//         submissionTime: "",
-//         grade: "",
-//         submittedCount: 0,
-//         checkedCount: 0,
-//       },
-//     ]);
-//     setNewHomework({ title: "", conditionLink: "", deadline: "" });
+//   const openModal = () => {
+//     setIsModalOpen(true);
 //   };
 
-//   const submitHomework = (index) => {
-//     // Логика для сдачи домашнего задания
-//   };
-
-//   const markAsDone = (index) => {
-//     // Логика для отметки домашнего задания как выполненного
+//   const closeModal = () => {
+//     setIsModalOpen(false);
 //   };
 
 //   return (
 //     <div>
-//       <div>
-//         <Header />
-//       </div>
+//       <Header />
 //       <div className="page">
-//         <Sidepanel ourPage="homework" />
-//         <div className="HWTitle">
-//           <h1>{subject.name} - Домашние задания</h1>
-//           {role === "teacher" && (
-//             <form onSubmit={addHomework}>
-//               <input
-//                 type="text"
-//                 name="title"
-//                 value={newHomework.title}
-//                 onChange={handleInputChange}
-//                 placeholder="Название задания"
-//                 required
-//               />
-//               <input
-//                 type="date"
-//                 name="deadline"
-//                 value={newHomework.deadline}
-//                 onChange={handleInputChange}
-//                 required
-//               />
-//               <input
-//                 type="file"
-//                 accept="application/pdf"
-//                 onChange={handleFileChange}
-//                 required
-//               />
-//               <button type="submit">Задать новое дз</button>
-//             </form>
-//           )}
-//         </div>
-//         <div className="tableArea">
-//           <table id="HWTable">
-//             <thead>
-//               <tr>
-//                 <th>Номер</th>
-//                 <th>Название дз</th>
-//                 <th>Ссылка на условие</th>
-//                 <th>Кнопка сдать</th>
-//                 <th>Дедлайн</th>
-//                 <th>Кнопка "done"</th>
-//                 <th>Время сдачи</th>
-//                 <th>Оценка</th>
-//                 {role === "teacher" && (
-//                   <>
-//                     <th>Количество сдавших</th>
-//                     <th>Количество проверенных</th>
-//                     <th>Редактировать дз</th>
-//                   </>
-//                 )}
-//               </tr>
-//             </thead>
-//             <tbody>
-//               {homeworks.map((homework, index) => (
-//                 <tr key={index}>
-//                   <td>{index + 1}</td>
-//                   <td>{homework.title}</td>
-//                   <td>
+//         <Sidepanel ourPage="materials" />
+//         <h1>{subject.name} - Конспекты</h1>
+//         {role === "teacher" && (
+//           <button onClick={openModal}>Добавить материалы</button>
+//         )}
+//         <table>
+//           <thead>
+//             <tr>
+//               <th>Номер</th>
+//               <th>Название</th>
+//               <th>Описание</th>
+//               <th>Ссылка на условие</th>
+//               <th>Файл</th>
+//               {role === "teacher" && <th>Редактировать</th>}
+//             </tr>
+//           </thead>
+//           <tbody>
+//             {notes.map((note, index) => (
+//               <tr key={index}>
+//                 <td>{index + 1}</td>
+//                 <td>{note.title}</td>
+//                 <td>{note.description}</td>
+//                 <td>
+//                   {true && ( // note.conditionLink
 //                     <a
-//                       href={homework.conditionLink}
-//                       target="_blank"
-//                       rel="noopener noreferrer"
+//                       href="https://t.me"
+//                       // href={note.conditionLink}
+//                       // target="_blank"
+//                       // rel="noopener noreferrer"
 //                     >
 //                       Условие
 //                     </a>
-//                   </td>
-//                   <td>
-//                     <button onClick={() => submitHomework(index)}>Сдать</button>
-//                   </td>
-//                   <td>{homework.deadline}</td>
-//                   <td>
-//                     <button onClick={() => markAsDone(index)}>Done</button>
-//                   </td>
-//                   <td>{homework.submissionTime}</td>
-//                   <td>{homework.grade}</td>
-//                   {role === "teacher" && (
-//                     <>
-//                       <td>{homework.submittedCount}</td>
-//                       <td>{homework.checkedCount}</td>
-//                       <td>
-//                         <button>Редактировать</button>
-//                       </td>
-//                     </>
 //                   )}
-//                 </tr>
-//               ))}
-//             </tbody>
-//           </table>
-//         </div>
+//                 </td>
+//                 <td>
+//                   {note.file instanceof File && (
+//                     <a
+//                       href={URL.createObjectURL(note.file)}
+//                       download={note.file.name}
+//                     >
+//                       <i className="fas fa-download"></i>
+//                     </a>
+//                   )}
+//                 </td>
+//                 {role === "teacher" && <td>Редактировать</td>}
+//               </tr>
+//             ))}
+//           </tbody>
+//         </table>
 //       </div>
-//       <div>
-//         <Footer />
-//       </div>
+//       <Footer />
+//       <Modal isOpen={isModalOpen} onClose={closeModal}>
+//         <AddNoteModal
+//           onClose={closeModal}
+//           onAddNote={addNote}
+//           handleInputChange={handleInputChange}
+//           handleFileChange={handleFileChange}
+//           newNote={newNote}
+//         />
+//       </Modal>
 //     </div>
 //   );
 // };
 
 // export default MaterialsPage;
+
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import Header from "../../components/header/Header";
+import Sidepanel from "../../components/sidepanel/Sidepanel";
+import Modal from "../../functions/modal/Modal";
+import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
+import Footer from "../../components/footer/Footer";
+
+const MaterialsPage = ({ subjects }) => {
+  const { subjectName } = useParams();
+  const subject = subjects[subjectName];
+  const [notes, setNotes] = useState(() => {
+    // homeworks, setHomeworks
+    const savedNotes = localStorage.getItem("notes"); //savedHomeworks
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
+  const [newNotes, setNewNotes] = useState({
+    // newHomework, setNewHomework
+    title: "",
+    conditionLink: "",
+    description: "",
+    file: null,
+  });
+  const role = localStorage.getItem("role");
+
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewNotes({ ...newNotes, [name]: value });
+  };
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setNewNotes({ ...newNotes, conditionLink: reader.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const addNote = (e) => {
+    e.preventDefault();
+    setNotes([
+      ...notes,
+      {
+        ...newNotes,
+        submissionTime: "",
+        grade: "",
+        submittedCount: 0,
+        checkedCount: 0,
+      },
+    ]);
+    setNewNotes({ title: "", conditionLink: "", deadline: "" });
+  };
+
+  return (
+    <div>
+      <div>
+        <Header />
+      </div>
+      <div className="page">
+        <Sidepanel ourPage="materials" />
+        <div className="HWTitle">
+          {" "}
+          // Исправить
+          <h1>{subject.name} - Материалы</h1>
+          {role === false && (
+            <form onSubmit={addNote}>
+              <input
+                type="text"
+                name="title"
+                value={newNotes.title}
+                onChange={handleInputChange}
+                placeholder="Название"
+                required
+              />
+              <input
+                type="date"
+                name="deadline"
+                value={newNotes.deadline}
+                onChange={handleInputChange}
+                required
+              />
+              <input
+                type="file"
+                accept="application/pdf"
+                onChange={handleFileChange}
+                required
+              />
+              <button type="submit">Прикрепить новый материал</button>
+            </form>
+          )}
+        </div>
+        <div className="tableArea">
+          {" "}
+          // Исправить
+          <table id="HWTable">
+            {" "}
+            // Исправить
+            <thead>
+              <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Ссылка</th>
+                <th>Кнопка Прикрепить</th>
+              </tr>
+            </thead>
+            <tbody>
+              {notes.map((note, index) => (
+                <tr key={index}>
+                  <td>{index + 1}</td>
+                  <td>{note.title}</td>
+                  <td>
+                    <a
+                      href={note.conditionLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Материал
+                    </a>
+                  </td>
+                  {role === false && (
+                    <>
+                      <td>
+                        <button>Редактировать</button>
+                      </td>
+                    </>
+                  )}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <Footer />
+      </div>
+    </div>
+  );
+};
+
+export default MaterialsPage;

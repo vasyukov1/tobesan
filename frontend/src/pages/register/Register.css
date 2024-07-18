@@ -1,0 +1,30 @@
+.registerPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50%;
+  border: 0.5rem inset black;
+  width: 25%;
+  margin: 0 auto;
+  padding: 20px;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 20px;
+  background-color: rgb(215, 213, 213);
+  align-self: center;
+}
+
+.registerButton {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 16px;
+  color: rgb(31, 31, 31);
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 15vw;
+  align-self: center;
+}

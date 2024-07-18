@@ -254,7 +254,7 @@ const MaterialsPage = ({ subjects }) => {
       <div className="page">
         <Sidepanel ourPage="subjects" />
         <h1>{subject.name} - Конспекты</h1>
-        {role === "teacher" && (
+        {role === false && (
           <button onClick={openModal}>Добавить материалы</button>
         )}
         <table>
@@ -264,7 +264,7 @@ const MaterialsPage = ({ subjects }) => {
               <th>Название</th>
               <th>Описание</th>
               <th>Файл</th>
-              {role === "teacher" && <th>Редактировать</th>}
+              {role === false && <th>Редактировать</th>}
             </tr>
           </thead>
           <tbody>
@@ -284,7 +284,7 @@ const MaterialsPage = ({ subjects }) => {
                     </a>
                   )}
                 </td>
-                {role === "teacher" && <td>Редактировать</td>}
+                {role === false && <td>Редактировать</td>}
               </tr>
             ))}
           </tbody>

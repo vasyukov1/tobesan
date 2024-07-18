@@ -51,10 +51,10 @@ const AccountPage = ({ userId }) => {
       <Header />
       <div className="account-page">
         <img src={user.photo} alt="User" className="user-photo" />
-        <p>{role === "student" ? "Студент" : "Преподаватель"}</p>
+        <p>{role === true ? "Студент" : "Преподаватель"}</p>
         <h1>{`${user.lastName} ${user.firstName} ${user.middleName}`}</h1>
         <p>Дата рождения: {user.birthDate}</p>
-        {role === "student" ? (
+        {role === true ? (
           <>
             <p>Факультет: {user.faculty}</p>
             <p>Группа: {user.group}</p>
