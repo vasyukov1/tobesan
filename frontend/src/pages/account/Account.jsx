@@ -29,7 +29,7 @@ const AccountPage = ({ userId }) => {
           lastName: result.surname,
           middleName: result.patronymic,
           birthDate: "16.04.2005",
-          faculty: "Факультет компьютерных наук",
+          faculty: "компьютерных наук",
           group: "БПИ233",
           direction: "Программная инженерия",
           login: result.login,

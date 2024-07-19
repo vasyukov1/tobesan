@@ -314,11 +314,15 @@ class DB:
 
     def get_materials(subject_name: str) -> list:
         with get_local()[1]() as session:
-            query = select([Materials.title, Materials.link]).where(Materials.subject == subject_name)
+            query = select(Materials.title, Materials.link).where(Materials.subject == subject_name)
             result = session.execute(query)
-            materials = result.scalars().all()
-            print(materials)
-        return materials
+            titles = result.scalars().all()
+            
+            query = select(Materials.link).where(Materials.subject == subject_name)
+            result = session.execute(query)
+            links = result.scalars().all()
+        return [titles, links]
+     
             
     # -----------
     # other stuff

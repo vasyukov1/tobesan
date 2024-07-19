@@ -115,10 +115,8 @@ def delete_material():
 @app.route("/materials/get", methods = ['POST'])
 def get_material():
     data = request.json
-    print(data["subject"])
     result = DB.get_materials(data["subject"])
-    print(result)
-    # return jsonify({"result": result})
+    return jsonify({"titles": result[0], "links": result[1]})
 
 
 if __name__ == "__main__":
