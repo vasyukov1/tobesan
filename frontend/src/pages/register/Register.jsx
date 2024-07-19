@@ -47,7 +47,6 @@ const Register = () => {
       confirmPassword: form.elements.confirmPassword.value,
       role: form.elements.role.value === "teacher" ? true : false,
     };
-    // console.log(formData.role);
 
     UserService.addUser(
       formData.email,
@@ -55,16 +54,15 @@ const Register = () => {
       formData.firstName,
       formData.lastName,
       formData.middleName,
-      true
-      // formData.role
+      formData.role
     ).then((result) => {
-      // console.log(result);
       if (result) {
+        localStorage.setItem("login", formData.email);
         localStorage.setItem("authToken", "your-token"); // change "your token" to email
-        localStorage.setItem("role", role);
+        localStorage.setItem("role", formData.role);
         navigate(ACCOUNT_ROUTE);
       } else {
-        alert("Эй, регистрация не удалась(");
+        alert("Регистрация не удалась");
       }
     });
   };
@@ -162,42 +160,6 @@ const Register = () => {
                     Teacher
                   </label>
                 </div>
-                {formData.role === true && (
-                  <div>
-                    <input
-                      type="text"
-                      name="faculty"
-                      value={formData.faculty}
-                      onChange={handleChange}
-                      placeholder="Факультет"
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="direction"
-                      value={formData.direction}
-                      onChange={handleChange}
-                      placeholder="Направление"
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="course"
-                      value={formData.course}
-                      onChange={handleChange}
-                      placeholder="Курс"
-                      required
-                    />
-                    <input
-                      type="text"
-                      name="group"
-                      value={formData.group}
-                      onChange={handleChange}
-                      placeholder="Группа"
-                      required
-                    />
-                  </div>
-                )}
                 {formData.role === false && (
                   <input
                     type="text"
@@ -209,8 +171,6 @@ const Register = () => {
                   />
                 )}
               </div>
-              {/* ) : (<></>
-              )} */}
             </div>
             <button className="loginButton" type="submit">
               Зарегистрироваться

@@ -9,6 +9,7 @@
   top: 10vh;
 
   text-align: center;
+  /* opacity: 0.8; */
 }
 
 .headerArea {
@@ -17,8 +18,4 @@
   top: 0;
   background-color: bisque;
   height: 11vh;
-  margin: 20px;
-  align-items: center;
-  align-self: center;
-  justify-content: center;
 }

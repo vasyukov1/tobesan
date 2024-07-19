@@ -13,7 +13,6 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState(true);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,11 +25,12 @@ const Login = () => {
   const handleLogin = () => {
     UserService.sign_in(email, password, role).then((result) => {
       if (result) {
+        localStorage.setItem("login", email);
         localStorage.setItem("authToken", "your-token");
         localStorage.setItem("role", role);
         navigate(ACCOUNT_ROUTE);
       } else {
-        alert("ЛОХ");
+        alert("Неверный пароль или логин");
       }
     });
   };
@@ -53,14 +53,23 @@ const Login = () => {
             value={password}
             setValue={setPassword}
           />
-
           <div>
+            {/* <label>
+              <input
+                type="radio"
+                name="role"
+                value="student"
+                className="role-radio"
+                checked={role === true}
+                onChange={(event) => setRole(event.target.value)}
+              />
+              Student
+            </label> */}
             <label>
               <input
                 type="radio"
                 name="role"
                 value="student"
-                checked={role === true}
                 onChange={(event) => setRole(event.target.value)}
               />
               Student
@@ -69,12 +78,22 @@ const Login = () => {
               <input
                 type="radio"
                 name="role"
-                value="teacher"
-                checked={role === false}
+                value="student"
                 onChange={(event) => setRole(event.target.value)}
               />
               Teacher
             </label>
+            {/*<label>
+               <input
+                type="radio"
+                name="role"
+                value="teacher"
+                className="role-radio"
+                checked={role === false}
+                onChange={(event) => setRole(event.target.value)}
+              />
+              Teacher
+            </label> */}
           </div>
           <button className="loginButton" onClick={handleLogin}>
             Войти

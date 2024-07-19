@@ -12,17 +12,18 @@ def hello():
 #-----------------
 # info about users
 #-----------------
-@app.route("/users", methods = ['GET'])
+@app.route("/users", methods = ['POST'])
 def all_users():
     pass
 
 @app.route("/users/add", methods = ['POST'])
 def add_user():
     data = request.json
-    if data["isStudent"]:
-        result = DB.add_student(data["newLogin"], data["newPassword"], data["newName"], data["newSurname"], data["newPatronymic"])
+    
+    if data["role"]:
+        result = DB.add_student(data["login"], data["password"], data["name"], data["surname"], data["patronymic"])
     else:
-        result = DB.add_teacher(data["newLogin"], data["newPassword"], data["newName"], data["newSurname"], data["newPatronymic"])
+        result = DB.add_teacher(data["login"], data["password"], data["name"], data["surname"], data["patronymic"])
 
     return jsonify({"result": result})
 
@@ -48,6 +49,16 @@ def delete_user():
     data = request.json
     DB.delete_user(data["login"], data["isStudent"])
 
+@app.route("/users/getInfo", methods = ['POST'])
+def get_user_info():
+    data = request.json
+    result1 = DB.get_user_info(data["login"])
+    result2 = DB.get_user_group(data["login"]) 
+    return jsonify({"login": result1.login,
+                    "name": result1.name,
+                    "surname": result1.surname,
+                    "patronymic": result1.patronymic,
+                    "group": result2})
 #------------------
 # info about groups
 #------------------

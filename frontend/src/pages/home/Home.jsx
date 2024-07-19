@@ -16,11 +16,13 @@ const Home = () => {
       <div className="pagehome">
         <Sidepanel ourPage="subjects" />
         <div className="home">
+          {/* <div className="topButtons"> */}
           {subjectKeys.map((subject) => (
             <Link key={subject} to={`/subjects/${subject}`}>
               <button className="subject-button">
                 {subjects[subject].name}
               </button>
+              {/* <button className="button"> */}
             </Link>
           ))}
           {role === false && (

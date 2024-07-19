@@ -6,11 +6,13 @@ import { LOGIN_ROUTE } from "../../routing/const";
 import "./Account.css";
 
 import React, { useState, useEffect } from "react";
+import UserService from "../../service/UserService";
 
 const AccountPage = ({ userId }) => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    localStorage.removeItem("login");
     localStorage.removeItem("authToken");
     localStorage.removeItem("role");
     navigate(LOGIN_ROUTE);
@@ -20,26 +22,25 @@ const AccountPage = ({ userId }) => {
   const role = localStorage.getItem("role");
 
   useEffect(() => {
-    // Здесь вы можете сделать запрос к вашему API для получения данных пользователя
-    // Пример:
-    // fetch(`/api/user/${userId}`)
-    //   .then(response => response.json())
-    //   .then(data => setUser(data));
-
-    // Для примера используем статичные данные
-    const exampleUser = {
-      firstName: "Иван",
-      lastName: "Иванов",
-      middleName: "Иванович",
-      birthDate: "01.01.2000",
-      faculty: "Факультет информатики",
-      group: "Группа 101",
-      direction: "Программирование",
-      login: "ivanov",
-      subject: "Математика",
-      photo: "https://via.placeholder.com/150",
-    };
-    setUser(exampleUser);
+    UserService.getUserInfo(localStorage.getItem("login")).then((result) => {
+      if (result) {
+        const exampleUser = {
+          firstName: result.name,
+          lastName: result.surname,
+          middleName: result.patronymic,
+          birthDate: "16.04.2005",
+          faculty: "Факультет компьютерных наук",
+          group: "БПИ233",
+          direction: "Программная инженерия",
+          login: result.login,
+          subject: "Алгебра",
+          photo: "https://via.placeholder.com/150",
+        };
+        setUser(exampleUser);
+      } else {
+        alert("Ошибка");
+      }
+    });
   }, [userId]);
 
   if (!user) {

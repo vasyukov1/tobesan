@@ -46,7 +46,7 @@ class DB:
     #-------------------------------
 
     @staticmethod
-    def add_teacher(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> None:
+    def add_teacher(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> bool:
         with get_local()[1]() as session:
             if session.get(Teachers, new_login) != None:
                 session.flush()
@@ -60,7 +60,7 @@ class DB:
                 return True
 
     @staticmethod
-    def add_student(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> None:
+    def add_student(new_login: str, new_password: str, new_name: str, new_surname: str, new_patronymic: str,) -> bool:
         with get_local()[1]() as session:
             if session.get(Students, new_login) != None:
                 session.flush()
@@ -110,12 +110,7 @@ class DB:
             result = session.execute(query)
             group = result.scalars().all()[0]
 
-            query = (select(Subjects.subject_id).select_from(Subjects)).where(
-                Subjects.name == subject_name)
-            result = session.execute(query)
-            subject = result.scalars().all()[0]
-
-            new_group_teacher = SubjectGroupTeacher(subject_id = subject, teacher_id = teacher_login, group_id = group)
+            new_group_teacher = SubjectGroupTeacher(subject_id = subject_name, teacher_id = teacher_login, group_id = group)
             session.add(new_group_teacher)
             session.flush()
             session.commit()
@@ -129,12 +124,7 @@ class DB:
             result = session.execute(query)
             group = result.scalars().all()[0]
 
-            query = (select(Subjects.subject_id).select_from(Subjects)).where(
-                Subjects.name == subject_name)
-            result = session.execute(query)
-            subject = result.scalars().all()[0]
-
-            new_hw = HomeWorks(group_id = group, subject_id = subject, number = hw_number)
+            new_hw = HomeWorks(group_id = group, subject_id = subject_name, number = hw_number)
             session.add(new_hw)
             session.flush()
             session.commit()
@@ -147,14 +137,10 @@ class DB:
             result = session.execute(query)
             group = result.scalars().all()[0]
 
-            query = (select(Subjects.subject_id).select_from(Subjects)).where(
-                Subjects.name == subject_name)
-            result = session.execute(query)
-            subject = result.scalars().all()[0]
 
             query = (select(HomeWorks.hw_id).select_from(HomeWorks)).where(
                 HomeWorks.group_id == group).where(
-                    HomeWorks.subject_id == subject).where(
+                    HomeWorks.subject_id == subject_name).where(
                     HomeWorks.number == hw_number
                 )
             result = session.execute(query)
@@ -169,8 +155,12 @@ class DB:
 
     
     # @staticmethod
-    # def add_material() -> None:
+    # def add_material(subject_name: str, lection_title: str, lection_link: str) -> bool:
     #     with get_local()[1]() as session:
+    #         new_subject = Subjects(name=subject_name)
+    #         session.add(new_subject)
+    #         session.flush()
+    #         session.commit()
 
     # ----------------------------------
     # deleting infromation from database
@@ -211,13 +201,8 @@ class DB:
             result = session.execute(query)
             group = result.scalars().all()[0]
 
-            query = (select(Subjects.subject_id).select_from(Subjects)).where(
-                Subjects.name == subject_name)
-            result = session.execute(query)
-            subject = result.scalars().all()[0]
-            
             query = (delete(HomeWorks).where(HomeWorks.number == hw_number).where(
-                HomeWorks.subject_id == subject).where(
+                HomeWorks.subject_id == subject_name).where(
                     HomeWorks.group_id == group
                 ))
             session.execute(query)
@@ -325,6 +310,20 @@ class DB:
     #------------
 
     @staticmethod
+    def get_user_info(user_login: str) -> Students | Teachers:
+        with get_local()[1]() as session:
+            user = session.get(Students, user_login)
+            if user == None:
+                user = session.get(Teachers, user_login)
+        return user
+    
+    @staticmethod
+    def get_user_group(user_login: str) -> str:
+        with get_local()[1]() as session:
+            group = session.get(StudentGroup, user_login)
+        return group
+
+    @staticmethod
     def sign_in(user_login: str, user_password: str, is_student: bool) -> bool:
         with get_local()[1]() as session:
             if is_student: user = session.get(Students, user_login)
@@ -351,7 +350,12 @@ def init() -> None:
     DB.update_user_password("Roma@edu.hse.ru", "neRoma", False)
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ231")
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ233")
-    print(DB.get_student("asamirov@edu.hse.ru"))
+    # print(DB.get_student("asamirov@edu.hse.ru"))
+    print(DB.get_user_info("Roma@edu.hse.ru").login)
+    print(DB.get_user_info("Roma@edu.hse.ru").name)
+    print(DB.get_user_info("Roma@edu.hse.ru").surname)
+    print(DB.get_user_info("Roma@edu.hse.ru").patronymic)
+    print(DB.get_user_group("Roma@edu.hse.ru"))
 
 if create_tables == 'True':
     DB.create_tables()

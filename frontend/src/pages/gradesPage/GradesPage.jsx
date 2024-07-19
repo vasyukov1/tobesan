@@ -33,18 +33,18 @@ const GradesPage = () => {
   const [homeworks, setHomeworks] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/students").then((response) => {
-      setStudents(response.data);
-    });
-    axios.get("/api/homeworks").then((response) => {
-      setHomeworks(response.data);
-    });
+    // axios.get("/api/students").then((response) => {
+    //   setStudents(response.data);
+    // });
+    // axios.get("/api/homeworks").then((response) => {
+    //   setHomeworks(response.data);
+    // });
   }, []);
 
   const calculateAverageGrade = (student) => {
-    const grades = student.grades.map((grade) => grade.score);
-    const sum = grades.reduce((a, b) => a + b, 0);
-    return sum / grades.length;
+    // const grades = student.grades.map((grade) => grade.score);
+    // const sum = grades.reduce((a, b) => a + b, 0);
+    // return sum / grades.length;
   };
 
   return (

@@ -1,4 +1,4 @@
-.materialsPage {
+/* .materialsPage {
   display: flex;
   flex-direction: row;
 }
@@ -15,4 +15,43 @@
   cursor: pointer;
   width: 15vw;
   align-self: center;
+} */
+
+#HWTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#HWTable td,
+#HWTable th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#HWTable tr:hover {
+  background-color: #ddd;
+}
+
+#HWTable th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+
+/* .tableArea {
+  background-color: brown;
+} */
+
+.HWTitle {
+  display: flex;
+  justify-content: center;
+  /* background-color: darkblue; */
+}
+
+.materialsTitle {
+  justify-content: center;
+  background-color: darkblue;
+  align-items: center;
 }

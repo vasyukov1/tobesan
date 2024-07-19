@@ -9,6 +9,7 @@ from sqlalchemy.orm import Mapped, mapped_column
 import datetime
 
 str_64 = Annotated[str, 64]
+str_256 = Annotated[str, 256]
 intpk = Annotated[int, mapped_column(primary_key=True)]
 str_64pk = Annotated[str, 64, mapped_column(primary_key=True)]
 created_at = Annotated[datetime.datetime, mapped_column(server_default=text("TIMEZONE('utc', now())"))]
@@ -64,8 +65,7 @@ class Groups(Base):
 class Subjects(Base):
     __tablename__ = "subjects"
 
-    subject_id: Mapped[intpk]
-    name: Mapped[str_64]
+    name: Mapped[str_64pk]
 
 class StudentGroup(Base):
     __tablename__ = "studentgroup"
@@ -90,8 +90,8 @@ class SubjectGroupTeacher(Base):
         ForeignKey("groups.group_id", ondelete="CASCADE"),
         primary_key=True,
     )
-    subject_id: Mapped[int] = mapped_column(
-        ForeignKey("subjects.subject_id", ondelete="CASCADE"),
+    subject_id: Mapped[str_64] = mapped_column(
+        ForeignKey("subjects.name", ondelete="CASCADE"),
         primary_key=True,
     )
 
@@ -103,8 +103,8 @@ class HomeWorks(Base):
         ForeignKey("groups.group_id", ondelete="CASCADE"),
         primary_key=False,
     )
-    subject_id: Mapped[int] = mapped_column(
-        ForeignKey("subjects.subject_id", ondelete="CASCADE"),
+    subject_id: Mapped[str_64] = mapped_column(
+        ForeignKey("subjects.name", ondelete="CASCADE"),
         primary_key=False,
     )
     number: Mapped[int]
@@ -128,10 +128,16 @@ class HomeWorksSent(Base):
     mark: Mapped[Optional[int]]
 
                                          
-# class Materials(Base):
-#     __tablename__ = "materials"
+class Materials(Base):
+    __tablename__ = "materials"
 
-
+    id: Mapped[intpk]
+    subject_id: Mapped[str_64] = mapped_column(
+        ForeignKey("subjects.name", ondelete="CASCADE"),
+        primary_key=False,
+    )
+    tille: Mapped[str_64]
+    link: Mapped[str_256]
 # class User_(Base):
 #     __tablename__ = "user_"
 
