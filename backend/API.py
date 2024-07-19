@@ -12,9 +12,9 @@ def hello():
 #-----------------
 # info about users
 #-----------------
-@app.route("/users", methods = ['POST'])
-def all_users():
-    pass
+# @app.route("/users", methods = ['POST'])
+# def all_users():
+#     pass
 
 @app.route("/users/add", methods = ['POST'])
 def add_user():
@@ -30,7 +30,11 @@ def add_user():
 @app.route("/users/signIn", methods = ['POST'])
 def sign_in():
     data = request.json
-    result = DB.sign_in(data["login"], data["password"], data["isStudent"])
+    if data["isStudent"] == "false": isStudent = False
+    else: isStudent = True
+    print(data["login"], data["password"], type(data["isStudent"]))
+    result = DB.sign_in(data["login"], data["password"], isStudent)
+    print(result)
     return jsonify({"result": result})
 
 
@@ -53,18 +57,17 @@ def delete_user():
 def get_user_info():
     data = request.json
     result1 = DB.get_user_info(data["login"])
-    result2 = DB.get_user_group(data["login"]) 
+    # result2 = DB.get_user_group(data["login"]) 
     return jsonify({"login": result1.login,
                     "name": result1.name,
                     "surname": result1.surname,
-                    "patronymic": result1.patronymic,
-                    "group": result2})
+                    "patronymic": result1.patronymic,})
 #------------------
 # info about groups
 #------------------
-@app.route("/groups", methods = ['GET'])
-def get_groups():
-    pass
+# @app.route("/groups", methods = ['GET'])
+# def get_groups():
+#     pass
 
 @app.route("/groups/add", methods = ['POST'])
 def add_group():
@@ -90,6 +93,34 @@ def update_students_group():
 # info about homeworks
 #---------------------
 # @app.route("/homeworks/")
+
+#---------------------
+# info about materials
+#---------------------
+# @app.route("/materials", methods = ['GET'])
+# def hello():
+#     pass
+
+@app.route("/materials/add", methods = ['POST'])
+def add_material():
+    print("GAIL")
+    data = request.json
+    print(data["subject"], data["title"], data["link"])
+    result = DB.add_material(data["subject"], data["title"], data["link"])
+    return jsonify({"result": result})
+
+
+@app.route("/materials/delete", methods = ['POST'])
+def delete_material():
+    pass
+
+@app.route("/materials/get", methods = ['POST'])
+def get_material():
+    data = request.json
+    result = DB.get_materials(data["subject"])
+    return jsonify({"result": result})
+
+
 if __name__ == "__main__":
     init()
     app.run()

@@ -131,12 +131,11 @@ class HomeWorksSent(Base):
 class Materials(Base):
     __tablename__ = "materials"
 
-    id: Mapped[intpk]
-    subject_id: Mapped[str_64] = mapped_column(
+    subject: Mapped[str_64] = mapped_column(
         ForeignKey("subjects.name", ondelete="CASCADE"),
-        primary_key=False,
+        primary_key=True,
     )
-    tille: Mapped[str_64]
+    tille: Mapped[str_64pk]
     link: Mapped[str_256]
 # class User_(Base):
 #     __tablename__ = "user_"

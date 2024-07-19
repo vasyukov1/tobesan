@@ -1,5 +1,6 @@
 import React from "react";
 import "./Modal.css"; // Добавьте стили для модального окна
+import "../../pages/login/Login.css";
 
 const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
@@ -7,7 +8,7 @@ const Modal = ({ isOpen, onClose, children }) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <button className="modal-close" onClick={onClose}>
+        <button className="loginButton" onClick={onClose}>
           X
         </button>
         {children}

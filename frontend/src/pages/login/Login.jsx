@@ -12,7 +12,7 @@ import UserService from "../../service/UserService";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(true);
+  const [role, setRole] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +24,7 @@ const Login = () => {
 
   const handleLogin = () => {
     UserService.sign_in(email, password, role).then((result) => {
+      localStorage.setItem("role", role);
       if (result) {
         localStorage.setItem("login", email);
         localStorage.setItem("authToken", "your-token");
@@ -69,7 +70,7 @@ const Login = () => {
               <input
                 type="radio"
                 name="role"
-                value="student"
+                value={true}
                 onChange={(event) => setRole(event.target.value)}
               />
               Student
@@ -78,7 +79,7 @@ const Login = () => {
               <input
                 type="radio"
                 name="role"
-                value="student"
+                value={false}
                 onChange={(event) => setRole(event.target.value)}
               />
               Teacher

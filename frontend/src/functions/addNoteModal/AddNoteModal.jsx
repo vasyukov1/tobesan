@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import MaterialService from "../../service/MaterialService";
 
 const AddNoteModal = ({ onAddNote, onClose }) => {
   const [subject, setSubject] = useState("");
@@ -18,6 +19,14 @@ const AddNoteModal = ({ onAddNote, onClose }) => {
       title,
       url,
     };
+
+    MaterialService.addMaterial(subject, title, url).then((result) => {
+      if (result) {
+        console.log("Материал добавлен");
+      } else {
+        alert("Ошибка при добавлении материалов");
+      }
+    });
 
     onAddNote(newNote);
     onClose();

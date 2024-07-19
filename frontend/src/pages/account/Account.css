@@ -7,12 +7,12 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   background-color: rgb(215, 213, 213);
   text-align: center;
-  height: 81vh;
+  height: 70vh;
 }
 
 .buttons {
   display: flex;
-  gap: 20px;
+  gap: 5px;
   flex-direction: column;
 }
 

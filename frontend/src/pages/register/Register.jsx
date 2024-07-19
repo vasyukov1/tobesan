@@ -19,7 +19,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    role: true,
+    role: "",
     faculty: "",
     direction: "",
     course: "",
@@ -45,7 +45,7 @@ const Register = () => {
       email: form.elements.email.value,
       password: form.elements.password.value,
       confirmPassword: form.elements.confirmPassword.value,
-      role: form.elements.role.value === "teacher" ? true : false,
+      role: form.elements.role.value,
     };
 
     UserService.addUser(
@@ -145,7 +145,7 @@ const Register = () => {
                     <input
                       type="radio"
                       name="role"
-                      value="student"
+                      value={true}
                       onClick={RoleSet}
                     />
                     Student
@@ -154,13 +154,13 @@ const Register = () => {
                     <input
                       type="radio"
                       name="role"
-                      value="teacher"
+                      value={false}
                       onClick={RoleSet}
                     />
                     Teacher
                   </label>
                 </div>
-                {formData.role === false && (
+                {formData.role == "false" && (
                   <input
                     type="text"
                     name="subject"

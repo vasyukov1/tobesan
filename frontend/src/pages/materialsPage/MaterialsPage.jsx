@@ -6,25 +6,34 @@ import Modal from "../../functions/modal/Modal";
 import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
 import Footer from "../../components/footer/Footer";
 import "./MaterialsPage.css";
+import "../login/Login.css";
 
 const MaterialsPage = ({ subjects }) => {
   const { subjectName } = useParams();
   const subject = subjects[subjectName];
+
   const [notes, setNotes] = useState(() => {
     const savedNotes = localStorage.getItem(`notes_${subjectName}`);
     return savedNotes ? JSON.parse(savedNotes) : [];
   });
   const [newNote, setNewNote] = useState({
     title: "",
-    description: "",
-    file: null,
+    url: "",
   });
+
   const role = localStorage.getItem("role");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
-  useEffect(() => {
-    localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
-  }, [notes, subjectName]);
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // useEffect(() => {
+  //   localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
+  // }, [notes, subjectName]);
 
   // const handleInputChange = (e) => {
   //   const { name, value } = e.target;
@@ -39,21 +48,8 @@ const MaterialsPage = ({ subjects }) => {
   const addNote = (note) => {
     const newNoteData = {
       title: note.title,
-      description: note.description,
-      file: note.file,
+      url: note.url,
     };
-
-    setNotes([...notes, newNoteData]);
-    setNewNote({ title: "", description: "", file: null });
-    closeModal();
-  };
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
   };
 
   return (
@@ -64,10 +60,15 @@ const MaterialsPage = ({ subjects }) => {
         <div className="naterialsPage">
           <div className="materialsTitle">
             <h1>{subject.name} - Конспекты</h1>
-            {role === "teacher" && (
-              <button className="materialsPage" onClick={openModal}>
-                Добавить материалы
-              </button>
+            {role === "false" && (
+              <div>
+                <button className="loginButton" onClick={openModal}>
+                  Добавить материалы
+                </button>
+                <Modal isOpen={isModalOpen} onClose={closeModal}>
+                  <AddNoteModal onClose={closeModal} onAddNote={addNote} />
+                </Modal>
+              </div>
             )}
           </div>
           <table>
@@ -75,8 +76,9 @@ const MaterialsPage = ({ subjects }) => {
               <tr>
                 <th>Номер</th>
                 <th>Название</th>
-                <th>Файл</th>
-                {role === "teacher" && <th>Редактировать</th>}
+                <th>Ссылка</th>
+                {role === "false" && <th>Редактировать</th>}
+                {role === "false" && <th>Удалить</th>}
               </tr>
             </thead>
             <tbody>
@@ -84,12 +86,15 @@ const MaterialsPage = ({ subjects }) => {
                 <tr key={index}>
                   <td>{index + 1}</td>
                   <td>{note.title}</td>
-                  <td>
-                    {note.file instanceof File && <a href={note.url}>Ссылка</a>}
-                  </td>
-                  {role === "teacher" && (
+                  <td>{note.url}</td>
+                  {role === "false" && (
                     <td>
                       <button>Редактировать</button>
+                    </td>
+                  )}
+                  {role === "false" && (
+                    <td>
+                      <button>Удалить</button>
                     </td>
                   )}
                 </tr>
@@ -98,9 +103,7 @@ const MaterialsPage = ({ subjects }) => {
           </table>
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <AddNoteModal onClose={closeModal} onAddNote={addNote} />
-      </Modal>
+
       <Footer />
     </div>
   );

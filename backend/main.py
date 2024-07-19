@@ -1,4 +1,4 @@
-from models import Base, Teachers, Students, Groups, Subjects, StudentGroup, SubjectGroupTeacher, HomeWorks, HomeWorksSent#, Materials
+from models import Base, Teachers, Students, Groups, Subjects, StudentGroup, SubjectGroupTeacher, HomeWorks, HomeWorksSent, Materials
 
 import os
 from dotenv import load_dotenv
@@ -154,14 +154,18 @@ class DB:
             session.commit()
 
     
-    # @staticmethod
-    # def add_material(subject_name: str, lection_title: str, lection_link: str) -> bool:
-    #     with get_local()[1]() as session:
-    #         new_subject = Subjects(name=subject_name)
-    #         session.add(new_subject)
-    #         session.flush()
-    #         session.commit()
-
+    @staticmethod
+    def add_material(subject_name: str, lection_title: str, lection_link: str) -> bool:
+        with get_local()[1]() as session:
+            result = False
+            if session.get(Students, (subject_name, lection_title)) != None:
+                new_material = Materials(name=subject_name, title=lection_title, link=lection_link)
+                result = True
+            session.add(new_material)
+            session.flush()
+            session.commit()
+        return result
+    
     # ----------------------------------
     # deleting infromation from database
     #----------------------------------
@@ -209,10 +213,13 @@ class DB:
             session.flush()
             session.commit()
 
-    # @staticmethod
-    # def delete_material() -> None:
-    #     with get_local()[1]() as session:
-
+    @staticmethod
+    def delete_material(subject_name: str, lection_title: str) -> None:
+        with get_local()[1]() as session:
+            query = (delete(Materials).where(Materials.subject == subject_name).where(Materials.tille==lection_title))
+            session.execute(query)
+            session.flush()
+            session.commit()
     # ----------------------------------
     # updating infromation from database
     #-----------------------------------
@@ -305,6 +312,13 @@ class DB:
             homeworks = result.scalars().all()
         return homeworks
 
+    def get_materials(subject_name: str) -> list:
+        with get_local()[1]() as session:
+            query = select(Materials).where(Materials.subject == subject_name)
+            result = session.execute(query)
+            materials = result.scalars().all()
+        return materials
+            
     # -----------
     # other stuff
     #------------
@@ -350,12 +364,12 @@ def init() -> None:
     DB.update_user_password("Roma@edu.hse.ru", "neRoma", False)
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ231")
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ233")
-    # print(DB.get_student("asamirov@edu.hse.ru"))
-    print(DB.get_user_info("Roma@edu.hse.ru").login)
-    print(DB.get_user_info("Roma@edu.hse.ru").name)
-    print(DB.get_user_info("Roma@edu.hse.ru").surname)
-    print(DB.get_user_info("Roma@edu.hse.ru").patronymic)
-    print(DB.get_user_group("Roma@edu.hse.ru"))
+    print(DB.get_teacher("Roma@edu.hse.ru"))
+    # print(DB.get_user_info("Roma@edu.hse.ru").login)
+    # print(DB.get_user_info("Roma@edu.hse.ru").name)
+    # print(DB.get_user_info("Roma@edu.hse.ru").surname)
+    # print(DB.get_user_info("Roma@edu.hse.ru").patronymic)
+    # print(DB.get_user_group("Roma@edu.hse.ru"))
 
 if create_tables == 'True':
     DB.create_tables()

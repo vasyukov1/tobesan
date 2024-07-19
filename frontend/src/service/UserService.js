@@ -40,7 +40,6 @@ class UserService {
         "http://127.0.0.1:5000/users/signIn",
         sendData
       );
-      console.log(JSON.parse(response.data.result));
       return JSON.parse(response.data.result);
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
