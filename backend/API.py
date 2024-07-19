@@ -103,9 +103,7 @@ def update_students_group():
 
 @app.route("/materials/add", methods = ['POST'])
 def add_material():
-    print("GAIL")
     data = request.json
-    print(data["subject"], data["title"], data["link"])
     result = DB.add_material(data["subject"], data["title"], data["link"])
     return jsonify({"result": result})
 
@@ -117,8 +115,10 @@ def delete_material():
 @app.route("/materials/get", methods = ['POST'])
 def get_material():
     data = request.json
+    print(data["subject"])
     result = DB.get_materials(data["subject"])
-    return jsonify({"result": result})
+    print(result)
+    # return jsonify({"result": result})
 
 
 if __name__ == "__main__":

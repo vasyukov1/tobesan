@@ -7,20 +7,12 @@ import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
 import Footer from "../../components/footer/Footer";
 import "./MaterialsPage.css";
 import "../login/Login.css";
+import MaterialService from "../../service/MaterialService";
 
 const MaterialsPage = ({ subjects }) => {
   const { subjectName } = useParams();
+
   const subject = subjects[subjectName];
-
-  const [notes, setNotes] = useState(() => {
-    const savedNotes = localStorage.getItem(`notes_${subjectName}`);
-    return savedNotes ? JSON.parse(savedNotes) : [];
-  });
-  const [newNote, setNewNote] = useState({
-    title: "",
-    url: "",
-  });
-
   const role = localStorage.getItem("role");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => {
@@ -30,6 +22,15 @@ const MaterialsPage = ({ subjects }) => {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
+  const [notes, setNotes] = useState(() => {
+    const savedNotes = localStorage.getItem(`notes_${subjectName}`);
+    return savedNotes ? JSON.parse(savedNotes) : [];
+  });
+  const [newNote, setNewNote] = useState({
+    title: "",
+    url: "",
+  });
 
   // useEffect(() => {
   //   localStorage.setItem(`notes_${subjectName}`, JSON.stringify(notes));
@@ -44,6 +45,12 @@ const MaterialsPage = ({ subjects }) => {
   //   const file = e.target.files[0];
   //   setNewNote({ ...newNote, file });
   // };
+
+  const func = () => {
+    MaterialService.getMaterials(subjectName).then((result) => {
+      console.log(result);
+    });
+  };
 
   const addNote = (note) => {
     const newNoteData = {
@@ -89,7 +96,7 @@ const MaterialsPage = ({ subjects }) => {
                   <td>{note.url}</td>
                   {role === "false" && (
                     <td>
-                      <button>Редактировать</button>
+                      <button onClick={func}>Редактировать</button>
                     </td>
                   )}
                   {role === "false" && (

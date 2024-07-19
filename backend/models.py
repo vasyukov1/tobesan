@@ -135,7 +135,7 @@ class Materials(Base):
         ForeignKey("subjects.name", ondelete="CASCADE"),
         primary_key=True,
     )
-    tille: Mapped[str_64pk]
+    title: Mapped[str_64pk]
     link: Mapped[str_256]
 # class User_(Base):
 #     __tablename__ = "user_"

@@ -158,10 +158,10 @@ class DB:
     def add_material(subject_name: str, lection_title: str, lection_link: str) -> bool:
         with get_local()[1]() as session:
             result = False
-            if session.get(Students, (subject_name, lection_title)) != None:
-                new_material = Materials(name=subject_name, title=lection_title, link=lection_link)
+            if session.get(Materials, (subject_name, lection_title)) == None:
+                new_material = Materials(subject=subject_name, title=lection_title, link=lection_link)
+                session.add(new_material)
                 result = True
-            session.add(new_material)
             session.flush()
             session.commit()
         return result
@@ -216,7 +216,7 @@ class DB:
     @staticmethod
     def delete_material(subject_name: str, lection_title: str) -> None:
         with get_local()[1]() as session:
-            query = (delete(Materials).where(Materials.subject == subject_name).where(Materials.tille==lection_title))
+            query = (delete(Materials).where(Materials.subject == subject_name).where(Materials.title==lection_title))
             session.execute(query)
             session.flush()
             session.commit()
@@ -314,9 +314,10 @@ class DB:
 
     def get_materials(subject_name: str) -> list:
         with get_local()[1]() as session:
-            query = select(Materials).where(Materials.subject == subject_name)
+            query = select([Materials.title, Materials.link]).where(Materials.subject == subject_name)
             result = session.execute(query)
             materials = result.scalars().all()
+            print(materials)
         return materials
             
     # -----------
@@ -349,7 +350,7 @@ class DB:
 def init() -> None:
     DB.add_subject("Matan")
     DB.add_subject("Diskra")
-    DB.add_subject("Algebra")
+    DB.add_subject("algebra")
     DB.add_subject("C#")
     DB.add_subject("C++")
     DB.add_subject("C")
@@ -357,14 +358,14 @@ def init() -> None:
     DB.add_group("БПИ235")
     DB.add_group("БПИ233")
     DB.add_student("asamirov@edu.hse.ru", "Agil", "Agil", "Amirov", "Shaig ogly")
-    print(DB.add_student("asamirov@edu.hse.ru", "RIM", "Agil", "Amirov", "Shaig ogly"))
+    # print(DB.add_student("asamirov@edu.hse.ru", "RIM", "Agil", "Amirov", "Shaig ogly"))
     DB.add_teacher("Roma@edu.hse.ru", "Roma", "Roma", "Roma", "Roma")
     DB.add_student_to_group("asamirov@edu.hse.ru", "БПИ233")
-    DB.add_teacher_to_the_group("Roma@edu.hse.ru", "Algebra", "БПИ233")
+    DB.add_teacher_to_the_group("Roma@edu.hse.ru", "algebra", "БПИ233")
     DB.update_user_password("Roma@edu.hse.ru", "neRoma", False)
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ231")
     DB.update_student_group("asamirov@edu.hse.ru", "БПИ233")
-    print(DB.get_teacher("Roma@edu.hse.ru"))
+    # print(DB.get_teacher("Roma@edu.hse.ru"))
     # print(DB.get_user_info("Roma@edu.hse.ru").login)
     # print(DB.get_user_info("Roma@edu.hse.ru").name)
     # print(DB.get_user_info("Roma@edu.hse.ru").surname)

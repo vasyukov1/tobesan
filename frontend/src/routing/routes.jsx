@@ -45,15 +45,15 @@ export const publicRoutes = [
     Element: <Materials />,
   },
   {
-    path: ABOUT_ROUTE,
-    Element: <About />,
-  },
-  {
     path: NO_PAGE_ROUTE,
     Element: <NoPage />,
   },
   {
     path: REGISTER_ROUTE,
     Element: <Register />,
+  },
+  {
+    path: ABOUT_ROUTE,
+    Element: <About />,
   },
 ];

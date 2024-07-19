@@ -7,7 +7,7 @@ import SubjectPage from "../pages/subjectPage/SubjectPage";
 import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
 import MaterialsPage from "../pages/materialsPage/MaterialsPage";
-import MaterialsPageWithErrorBoundary from "../pages/materialsPage/MaterialsPageWithErrorBoundary";
+// import MaterialsPageWithErrorBoundary from "../pages/materialsPage/MaterialsPageWithErrorBoundary";
 import GradesPage from "../pages/gradesPage/GradesPage";
 
 const AppRouter = () => {

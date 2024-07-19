@@ -2,11 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import "./Footer.css";
+import { ABOUT_ROUTE } from "../../routing/const";
 
 const Footer = () => {
   return (
     <div>
-      <Link className="footer2">About us</Link>
+      <Link className="footer2" to={ABOUT_ROUTE}>
+        About us
+      </Link>
       <div className="footer">
         <a className="linkStyle" href="https://t.me/overmindv">
           Alex Sverhrazum
