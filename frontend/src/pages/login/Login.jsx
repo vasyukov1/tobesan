@@ -46,9 +46,9 @@ const Login = () => {
       <div className="loginArea">
         <div className="buttonsArea">
           <h1>Вход</h1>
-          <Input text="Почта " type="email" value={email} setValue={setEmail} />
+          <Input text="Почта" type="email" value={email} setValue={setEmail} />
           <Input
-            text="Пароль "
+            text="Пароль"
             type="password"
             value={password}
             setValue={setPassword}
@@ -63,6 +63,7 @@ const Login = () => {
               />
               Student
             </label>
+            <br />
             <label>
               <input
                 type="radio"
@@ -76,7 +77,7 @@ const Login = () => {
           <button className="loginButton" onClick={handleLogin}>
             Войти
           </button>
-          <p>--- Новенький? ---</p>
+          <p>----------</p>
           <button className="loginButton" onClick={handleRegister}>
             Зарегистрироваться
           </button>

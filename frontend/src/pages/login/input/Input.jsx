@@ -2,9 +2,9 @@
 const Input = ({ text, type, value = "", setValue = () => {} }) => {
   return (
     <label className="">
-      {text}
       <input
         className=""
+        placeholder={text}
         type={type}
         onChange={(event) => setValue(event.target.value)}
         value={value}

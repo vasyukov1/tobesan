@@ -2,33 +2,27 @@ import React, { useState } from "react";
 
 import MaterialService from "../../service/MaterialService";
 
-const AddNoteModal = ({ onAddNote, onClose }) => {
+const AddNoteModal = ({ onClose, updateMaterialsList }) => {
   const [subject, setSubject] = useState("");
   const [title, setTitle] = useState("");
   const [link, setLink] = useState(null);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
     if (!subject || !title || !link) {
       alert("Заполните все поля.");
       return;
     }
 
-    const newNote = {
-      subject,
-      title,
-      link,
-    };
-
     MaterialService.addMaterial(subject, title, link).then((result) => {
       if (result) {
         console.log("Material is added");
+        updateMaterialsList(title, link);
       } else {
         alert("Ошибка при добавлении материалов");
       }
     });
-    onAddNote(newNote);
     onClose();
   };
 
@@ -52,7 +46,7 @@ const AddNoteModal = ({ onAddNote, onClose }) => {
           />
         </label>
         <label>
-          URL:
+          Link:
           <input
             type="text"
             value={link}

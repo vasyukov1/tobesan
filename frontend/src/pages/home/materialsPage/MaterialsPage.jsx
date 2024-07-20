@@ -39,17 +39,9 @@ const MaterialsPage = ({ subjects }) => {
     setNewNote({ ...newNote, file });
   };
 
-  // const addNote = (e) => {
-  //   e.preventDefault();
-  //   setNotes([...notes, newNote]);
-  //   setNewNote({ title: "", description: "", file: null });
-  //   closeModal();
-  // };
-
   const addNote = async (e) => {
     e.preventDefault();
 
-    // Create a new FormData object and append the note data to it
     const formData = new FormData();
     formData.append("title", newNote.title);
     formData.append("description", newNote.description);

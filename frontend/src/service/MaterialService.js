@@ -18,6 +18,7 @@ class MaterialService {
       return null;
     }
   }
+
   static async getMaterials(material_subject) {
     let sendData = { subject: material_subject };
     try {
@@ -25,7 +26,6 @@ class MaterialService {
         "http://127.0.0.1:5000/materials/get",
         sendData
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Ошибка при отправке запроса:", error);
