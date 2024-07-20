@@ -3,7 +3,7 @@ import Grades from "../pages/grades/Grades.jsx";
 import Home from "../pages/home/Home.jsx";
 import Login from "../pages/login/Login.jsx";
 import Materials from "../pages/materials/Materials.jsx";
-import About from "../components/about/About.jsx";
+import About from "../pages/about/About.jsx";
 import Homework from "../pages/homework/Homework.jsx";
 import NoPage from "../pages/noPage/NoPage.jsx";
 import {

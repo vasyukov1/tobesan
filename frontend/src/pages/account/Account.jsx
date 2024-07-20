@@ -1,16 +1,18 @@
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
+import UserService from "../../service/UserService";
 import { LOGIN_ROUTE } from "../../routing/const";
+
 import "./Account.css";
 
-import React, { useState, useEffect } from "react";
-import UserService from "../../service/UserService";
-
 const AccountPage = ({ userId }) => {
-  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  const role = localStorage.getItem("role");
 
+  const navigate = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem("login");
     localStorage.removeItem("authToken");
@@ -18,13 +20,10 @@ const AccountPage = ({ userId }) => {
     navigate(LOGIN_ROUTE);
   };
 
-  const [user, setUser] = useState(null);
-  const role = localStorage.getItem("role");
-
   useEffect(() => {
     UserService.getUserInfo(localStorage.getItem("login")).then((result) => {
       if (result) {
-        const exampleUser = {
+        const userInfo = {
           firstName: result.name,
           lastName: result.surname,
           middleName: result.patronymic,
@@ -36,7 +35,7 @@ const AccountPage = ({ userId }) => {
           subject: "Алгебра",
           photo: "https://via.placeholder.com/150",
         };
-        setUser(exampleUser);
+        setUser(userInfo);
       } else {
         alert("Ошибка");
       }
@@ -55,7 +54,7 @@ const AccountPage = ({ userId }) => {
         <p>{role === "true" ? "Студент" : "Преподаватель"}</p>
         <h1>{`${user.lastName} ${user.firstName} ${user.middleName}`}</h1>
         <p>Дата рождения: {user.birthDate}</p>
-        {role == "true" ? (
+        {role === "true" ? (
           <>
             <p>Факультет: {user.faculty}</p>
             <p>Группа: {user.group}</p>

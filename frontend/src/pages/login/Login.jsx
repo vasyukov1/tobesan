@@ -47,7 +47,6 @@ const Login = () => {
         <div className="buttonsArea">
           <h1>Вход</h1>
           <Input text="Почта " type="email" value={email} setValue={setEmail} />
-
           <Input
             text="Пароль "
             type="password"
@@ -55,17 +54,6 @@ const Login = () => {
             setValue={setPassword}
           />
           <div>
-            {/* <label>
-              <input
-                type="radio"
-                name="role"
-                value="student"
-                className="role-radio"
-                checked={role === true}
-                onChange={(event) => setRole(event.target.value)}
-              />
-              Student
-            </label> */}
             <label>
               <input
                 type="radio"
@@ -84,17 +72,6 @@ const Login = () => {
               />
               Teacher
             </label>
-            {/*<label>
-               <input
-                type="radio"
-                name="role"
-                value="teacher"
-                className="role-radio"
-                checked={role === false}
-                onChange={(event) => setRole(event.target.value)}
-              />
-              Teacher
-            </label> */}
           </div>
           <button className="loginButton" onClick={handleLogin}>
             Войти

@@ -12,16 +12,16 @@ const Footer = () => {
       </Link>
       <div className="footer">
         <a className="linkStyle" href="https://t.me/overmindv">
-          Alex Sverhrazum
+          Alex
         </a>
         <a className="linkStyle" href="https://t.me/vyshkochka">
-          Leo Vyshkochka
+          Leo
         </a>
         <a className="linkStyle" href="https://t.me/Mister_V_1">
-          Dima Dezign
+          Dima
         </a>
         <a className="linkStyle" href="https://t.me/amirovagil">
-          Agile Macho
+          Agil
         </a>
       </div>
     </div>

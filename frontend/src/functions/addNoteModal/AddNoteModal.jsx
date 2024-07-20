@@ -1,33 +1,33 @@
 import React, { useState } from "react";
+
 import MaterialService from "../../service/MaterialService";
 
 const AddNoteModal = ({ onAddNote, onClose }) => {
   const [subject, setSubject] = useState("");
   const [title, setTitle] = useState("");
-  const [url, setUrl] = useState(null);
+  const [link, setLink] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!subject || !title || !url) {
-      alert("Пожалуйста, заполните все поля.");
+    if (!subject || !title || !link) {
+      alert("Заполните все поля.");
       return;
     }
 
     const newNote = {
       subject,
       title,
-      url,
+      link,
     };
 
-    MaterialService.addMaterial(subject, title, url).then((result) => {
+    MaterialService.addMaterial(subject, title, link).then((result) => {
       if (result) {
-        console.log("Материал добавлен");
+        console.log("Material is added");
       } else {
         alert("Ошибка при добавлении материалов");
       }
     });
-
     onAddNote(newNote);
     onClose();
   };
@@ -55,8 +55,8 @@ const AddNoteModal = ({ onAddNote, onClose }) => {
           URL:
           <input
             type="text"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
+            value={link}
+            onChange={(e) => setLink(e.target.value)}
           />
         </label>
         <button type="submit">Submit</button>

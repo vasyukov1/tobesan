@@ -1,13 +1,16 @@
 .sidepanel {
+  display: flex;
   background-color: rgb(7, 64, 151);
-  width: 20vw;
   height: 81vh;
+  width: 20vw;
 }
 
 .sideItem {
-  width: 14vw;
+  /* display: flex; */
   height: 10vh;
+  width: 14vw;
   margin: 10px;
+
   font-size: 18px;
   cursor: pointer;
   border: none;

@@ -34,14 +34,3 @@
   width: 15vw;
   align-self: center;
 }
-
-/* .role-radio:checked::before {
-  content: "";
-  display: block;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  background-color: #007bff;
-  margin-right: 0.5rem;
-  vertical-align: middle;
-} */

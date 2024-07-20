@@ -1,21 +1,22 @@
 import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
+
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import Sidepanel from "../../components/sidepanel/Sidepanel";
-import Modal from "../../functions/modal/Modal";
 import AddNoteModal from "../../functions/addNoteModal/AddNoteModal";
+import Modal from "../../functions/modal/Modal";
+
 import "./SubjectPage.css";
 
 const SubjectPage = ({ subjectInfo }) => {
   const { subjectName } = useParams();
   const subject = subjectInfo[subjectName];
-  const role = localStorage.getItem("role");
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  // const openModal = () => {
+  //   setIsModalOpen(true);
+  // };
 
   const closeModal = () => {
     setIsModalOpen(false);
@@ -31,7 +32,7 @@ const SubjectPage = ({ subjectInfo }) => {
         <Header />
       </div>
       <div className="subjectPage">
-        <Sidepanel />
+        <Sidepanel ourPage="subjects" />
         <div>
           <div></div>
           <h1>{subject.name}</h1>

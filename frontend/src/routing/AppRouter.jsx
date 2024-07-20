@@ -1,14 +1,13 @@
 import React from "react";
-
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { publicRoutes } from "./routes";
 import SubjectPage from "../pages/subjectPage/SubjectPage";
-import { subjects } from "../components/subjects/Subjects";
 import HomeworkPage from "../pages/homeworkPage/HomeworkPage";
 import MaterialsPage from "../pages/materialsPage/MaterialsPage";
-// import MaterialsPageWithErrorBoundary from "../pages/materialsPage/MaterialsPageWithErrorBoundary";
 import GradesPage from "../pages/gradesPage/GradesPage";
+import { subjects } from "../components/subjects/Subjects";
+
+import { publicRoutes } from "./routes";
 
 const AppRouter = () => {
   return (

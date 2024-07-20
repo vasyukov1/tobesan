@@ -1,7 +1,9 @@
 import React from "react";
-import "./Sidepanel.css";
 import { Link } from "react-router-dom";
+
 import { subjects } from "../subjects/Subjects";
+
+import "./Sidepanel.css";
 
 const Sidepanel = ({ ourPage }) => {
   const subjectKeys = Object.keys(subjects);

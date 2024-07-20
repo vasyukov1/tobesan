@@ -1,7 +1,7 @@
 import React from "react";
 import "./Header.css";
 
-import Item from "../item/Item";
+import Item from "./item/Item";
 
 const Header = () => {
   return (
