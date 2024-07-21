@@ -17,6 +17,7 @@ const Grades = () => {
           {/* <a href="http://51.250.99.13:3000/">
             <button className="loginButton">Хочу хорошую оценку</button>
           </a> */}
+          <div className="main">{/* Таблица со всеми оценками */}</div>
         </div>
       </div>
       <Footer />

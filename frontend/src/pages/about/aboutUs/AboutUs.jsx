@@ -10,14 +10,14 @@ import "./AboutUs.css";
 const AboutUs = () => {
   return (
     <div className="aboutUs">
-      <h1>Our Team</h1>
+      <h1>Наша команда</h1>
       <div className="team">
         <div className="teamMember">
           <img src={leonidImage} alt="leo-livshits" />
           <h2>
-            Leonid
+            Леонид
             <br />
-            Livshits
+            Лившиц
           </h2>
           <p>SE FCS HSE</p>
           <p>frontend</p>
@@ -26,9 +26,9 @@ const AboutUs = () => {
         <div className="teamMember">
           <img src={dmitriyImage} alt="dima-alekseev" />
           <h2>
-            Dmitry
+            Дмитрий
             <br />
-            Alekseev
+            Алексеев
           </h2>
           <p>SE FCS HSE</p>
           <p>design</p>
@@ -37,20 +37,20 @@ const AboutUs = () => {
         <div className="teamMember">
           <img src={alexandrImage} alt="alex-vasyukov" />
           <h2>
-            Alexander
+            Александр
             <br />
-            Vasyukov
+            Васюков
           </h2>
           <p>SE FCS HSE</p>
-          <p>frontend, PM</p>
+          <p>frontend, CTO</p>
           <a href="https://t.me/overmindv">Telegram</a>
         </div>
         <div className="teamMember">
           <img src={agilImage} alt="agil-amirov" />
           <h2>
-            Agil
+            Агиль
             <br />
-            Amirov
+            Амиров
           </h2>
           <p>SE FCS HSE</p>
           <p>backend</p>

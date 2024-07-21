@@ -352,12 +352,12 @@ class DB:
         return True
 
 def init() -> None:
-    DB.add_subject("Matan")
-    DB.add_subject("Diskra")
+    DB.add_subject("calculus")
+    DB.add_subject("diskra")
     DB.add_subject("algebra")
-    DB.add_subject("C#")
-    DB.add_subject("C++")
-    DB.add_subject("C")
+    DB.add_subject("c_sharp")
+    DB.add_subject("c_plus_plus")
+    DB.add_subject("c")
     DB.add_group("БПИ231")
     DB.add_group("БПИ235")
     DB.add_group("БПИ233")

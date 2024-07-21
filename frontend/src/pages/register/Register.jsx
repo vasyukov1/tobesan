@@ -34,6 +34,7 @@ const Register = () => {
   const RoleSet = (event) => {
     setRole(event.target.value);
   };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;

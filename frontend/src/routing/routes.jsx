@@ -6,6 +6,7 @@ import Materials from "../pages/materials/Materials.jsx";
 import About from "../pages/about/About.jsx";
 import Homework from "../pages/homework/Homework.jsx";
 import NoPage from "../pages/noPage/NoPage.jsx";
+import EditAccount from "../pages/account/editAccount/EditAccount.jsx";
 import {
   ACCOUNT_ROUTE,
   GRADES_ROUTE,
@@ -16,6 +17,7 @@ import {
   ABOUT_ROUTE,
   NO_PAGE_ROUTE,
   REGISTER_ROUTE,
+  EDIT_ACCOUNT_ROUTE,
 } from "./const.js";
 import Register from "../pages/register/Register.jsx";
 
@@ -56,4 +58,8 @@ export const publicRoutes = [
     path: ABOUT_ROUTE,
     Element: <About />,
   },
+  // {
+  //   path: EDIT_ACCOUNT_ROUTE,
+  //   Element: <EditAccount />,
+  // },
 ];

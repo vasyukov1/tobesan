@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import UserService from "../../service/UserService";
-import { LOGIN_ROUTE } from "../../routing/const";
+import { LOGIN_ROUTE, EDIT_ACCOUNT_ROUTE } from "../../routing/const";
 
 import "./Account.css";
 
@@ -46,6 +46,15 @@ const AccountPage = ({ userId }) => {
     return <div>Загрузка...</div>;
   }
 
+  const changePassword = () => {
+    // Смена пароля
+  };
+
+  const editAccount = () => {
+    navigate(EDIT_ACCOUNT_ROUTE);
+    // Редактирование аккаунта
+  };
+
   return (
     <div>
       <Header />
@@ -65,8 +74,12 @@ const AccountPage = ({ userId }) => {
         )}
         <p>Логин: {user.login}</p>
         <div className="buttons">
-          <button className="buttonAccount">Сменить пароль</button>
-          <button className="buttonAccount">Редактировать аккаунт</button>
+          <button className="buttonAccount" onClick={changePassword}>
+            Сменить пароль
+          </button>
+          <button className="buttonAccount" onClick={editAccount}>
+            Редактировать аккаунт
+          </button>
           <button className="buttonAccount" onClick={handleLogout}>
             Log Out
           </button>

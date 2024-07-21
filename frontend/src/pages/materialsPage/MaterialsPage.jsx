@@ -39,9 +39,9 @@ const MaterialsPage = ({ subjects }) => {
     setLinks([...links, newLink]);
   };
 
-  const deleteMaterial = () => {};
+  const deleteMaterial = (index) => {};
 
-  const editMaterial = () => {};
+  const editMaterial = (index) => {};
 
   return (
     <div>
@@ -66,7 +66,7 @@ const MaterialsPage = ({ subjects }) => {
               </div>
             )}
           </div>
-          <table>
+          <table id="Table">
             <thead>
               <tr>
                 <th>Номер</th>
@@ -86,12 +86,14 @@ const MaterialsPage = ({ subjects }) => {
                   </td>
                   {role === "false" && (
                     <td>
-                      <button onClick={editMaterial}>Редактировать</button>
+                      <button onClick={editMaterial(index)}>
+                        Редактировать
+                      </button>
                     </td>
                   )}
                   {role === "false" && (
                     <td>
-                      <button onClick={deleteMaterial}>Удалить</button>
+                      <button onClick={deleteMaterial(index)}>Удалить</button>
                     </td>
                   )}
                 </tr>

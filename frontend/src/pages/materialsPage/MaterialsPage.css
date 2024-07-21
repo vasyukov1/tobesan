@@ -17,22 +17,22 @@
   align-self: center;
 } */
 
-#HWTable {
+#Table {
   width: 100%;
   border-collapse: collapse;
 }
 
-#HWTable td,
-#HWTable th {
+#Table td,
+#Table th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-#HWTable tr:hover {
+#Table tr:hover {
   background-color: #ddd;
 }
 
-#HWTable th {
+#Table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
@@ -44,14 +44,13 @@
   background-color: brown;
 } */
 
-.HWTitle {
+.Title {
   display: flex;
   justify-content: center;
-  /* background-color: darkblue; */
+  background-color: darkblue;
 }
 
 .materialsTitle {
   justify-content: center;
-
   align-items: center;
 }
